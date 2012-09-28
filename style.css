@@ -1,4 +1,27 @@
+body
+{
+	font-family: 'Cabin Condensed', sans-serif;
+	background: #F4F4F4 url(images/body.gif);
+}
+
+h1
+{
+	text-shadow: 0 1px 0 rgba(255, 255, 255, .45);
+}
+
+img
+{
+	height: 35em;
+	max-width: 17em;
+	padding-top: 2.5em;
+	padding-bottom: 2.5em;
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+/**************/
 /* Roundabout */
+/**************/
 .roundabout-holder {
 	list-style: none;
 	padding: 0;
@@ -12,7 +35,11 @@
 	width: 40em;
 	cursor: pointer;
 	background-color: #fff;
-	border: 1px solid #999;
+	border: 1px solid #ccc;
+	-webkit-box-shadow:  7px 7px 5px 0px rgba(99, 99, 99, .5);
+	box-shadow:  7px 7px 5px 0px rgba(99, 99, 99, .5);
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
 }
 .roundabout-in-focus {
 	cursor: auto;
@@ -53,14 +80,25 @@
 	width: 40em;
 }
 
-img
+#nav-list
 {
-	height: 35em;
-	max-width: 17em;
-	padding-top: 2.5em;
-	padding-bottom: 2.5em;
-	padding-left: 1em;
-	padding-right: 1em;
+	background-color: white;
+}
+
+.span3
+{
+	margin-top: 20px;
+	margin-right: 20px;
+}
+
+.nav > li:hover
+{
+	cursor: pointer;
+}
+
+.nav > li.active
+{
+	cursor: default;
 }
 
 /* Paging */
@@ -72,11 +110,13 @@ img
 	z-index: 50;
 	background-color: #ccc
 }
+
 #nav > li
 {
 	float: left;
 	padding: 5px 10px;
 }
+
 #wrapper
 { 
 	height: 41em; 
@@ -84,10 +124,9 @@ img
 	position: relative;
 	z-index: 20;
 }
+
 #wrapper > div
 { 
 	width: 100%; 
 	height: 41em;
 }
-
-​
