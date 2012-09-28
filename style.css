@@ -1,0 +1,91 @@
+/* Roundabout */
+.roundabout-holder {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	height: 40em;
+	width: 30em;
+	margin: auto
+}
+.roundabout-moveable-item {
+	height: 40em;
+	width: 40em;
+	cursor: pointer;
+	background-color: #ccc;
+	border: 1px solid #999;
+}
+.roundabout-in-focus {
+	cursor: auto;
+}
+
+/* Dram project*/
+.float-left
+{
+	float: left;
+}
+
+.float-right
+{
+	float: right;
+}
+
+.fclear-left
+{
+	float: left;
+	clear: left;
+}
+
+.fclear-right
+{
+	float: right;
+	clear: right;
+}
+
+.info
+{
+	width: 300px;
+}
+
+.card
+{
+	overflow: hidden;
+	height: 40em;
+	width: 40em;
+}
+
+img
+{
+	height: 35em;
+	padding-top: 2.5em;
+	padding-bottom: 2.5em;
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+/* Paging */
+#nav 
+{
+	position: absolute;
+	top: 0;
+	right: 50px;
+	z-index: 50;
+}
+#nav > li
+{
+	float: left;
+	padding: 5px 10px;
+}
+#wrapper
+{ 
+	height: 700px; 
+	overflow: hidden;
+	position: relative;
+	z-index: 20;
+}
+#wrapper > div
+{ 
+	width: 100%; 
+	height: 700px;
+}
+
+​
