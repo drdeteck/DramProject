@@ -31,8 +31,8 @@ img
 	margin: auto
 }
 .roundabout-moveable-item {
-	height: 40em;
-	width: 40em;
+	height: 50em;
+	width: 50em;
 	cursor: pointer;
 	background-color: #fff;
 
