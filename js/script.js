@@ -172,8 +172,12 @@ DramProject.RunFooterAnimation = function()
 		{
 			queue: false,
 			duration: 500,
+			complete: function () {
+				$("#footer-button i").toggleClass("icon-chevron-up");
+				$("#footer-button i").toggleClass("icon-chevron-down");
+			}
 		}
-	);
+		);
 };
 
 } (PL.DramProject = PL.DramProject || {}, $));
