@@ -1,0 +1,192 @@
+body
+{
+	font-family: 'Cabin Condensed', sans-serif;
+	background: #F4F4F4 url(img/body.gif);
+}
+
+h1
+{
+	text-shadow: 0 1px 0 rgba(255, 255, 255, .45);
+}
+
+.title
+{
+	font-size: 40px;
+}
+
+.title-background
+{
+	background-color: white;
+}
+
+/**************/
+/* Roundabout */
+/**************/
+.roundabout-holder {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	height: 51em;
+	width: 30em;
+	margin: auto
+}
+.roundabout-moveable-item {
+	height: 50em;
+	width: 60em;
+	cursor: pointer;
+	background-color: #fff;
+
+	border: 1px solid #E3E3E3;
+
+	-webkit-box-shadow:  7px 7px 5px 0px rgba(99, 99, 99, .5);
+	box-shadow:  7px 7px 5px 0px rgba(99, 99, 99, .5);
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+}
+.roundabout-in-focus {
+	cursor: auto;
+}
+
+/* Dram project*/
+.float-left
+{
+	float: left;
+}
+
+.float-right
+{
+	float: right;
+}
+
+.fclear-left
+{
+	float: left;
+	clear: left;
+}
+
+.fclear-right
+{
+	float: right;
+	clear: right;
+}
+
+.info
+{
+	height: 45em; /* Resize aware */
+	position: absolute;
+	right: 0px;
+	width: 55%; /* 60% minus margin */
+	margin-right: 4%;
+	margin-left: 1%; /* Half and half with info */
+	margin-top: 2.5em;
+	margin-bottom: 2.5em;
+	overflow: hidden;
+}
+
+.left-image
+{
+	height: 45em; /* Resize aware */
+	position: absolute;
+	left: 0px;
+	width: 37%; /* 40% minus margins */
+	margin-top: 2.5em;
+	margin-bottom: 2.5em;
+	margin-right: 1%; /* Half and half with info */
+	margin-left: 2%;
+	background: no-repeat center center;
+	background-size: contain;
+}
+
+.card
+{
+	height: 50em;
+	width: 60em;
+}
+
+#nav-list
+{
+	background-color: white;
+}
+
+.span3
+{
+	margin-top: 20px;
+	margin-right: 20px;
+}
+
+.nav > li:hover
+{
+	cursor: pointer;
+}
+
+.nav > li.active
+{
+	cursor: default;
+}
+
+#footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	height: 40px;
+	width: 100%;
+	background: transparent;
+	clear: both;
+	z-index: 999;
+} 
+
+#footer-button
+{
+	background-color: red;
+	height: 40px;
+	width: 40px;
+	margin-left: 260px;
+}
+
+#footer-content
+{
+	margin: 0 auto;
+	list-style-type: none;
+	background-color: white;
+	height: 100%;
+	width: 100%;
+
+	/*border-top: 1px;*/
+	border-top: 1px solid #E3E3E3;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+	-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+/* Paging */
+#nav 
+{
+	position: absolute;
+	top: 0;
+	left: 50px;
+	z-index: 50;
+	background-color: #ccc
+}
+
+#nav > li
+{
+	float: left;
+	padding: 5px 10px;
+}
+
+#wrapper
+{ 
+	height: 41em; 
+	overflow: hidden;
+	position: relative;
+	z-index: 20;
+}
+
+#wrapper > div
+{ 
+	width: 100%; 
+	height: 51em;
+}

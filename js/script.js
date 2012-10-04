@@ -14,6 +14,8 @@ var menuFirstHeader = true;
 var docHeight = 0;
 var lastAddedPageIndex = -1;
 var roundaboutIdSuffix = "-roundabout";
+var footerOpenHeight = 250;
+var footerCloseHeight = 40;
 
 // Table indexes
 var indexRegion = 0;
@@ -35,6 +37,9 @@ DramProject.Initialize = function () {
 
 	$(document).ready(function()
 	{
+		// Setup footer
+		$("#footer-button").click(PL.DramProject.RunFooterAnimation);
+
 		// Setup Data
 		PL.SpreadSheet.Key = "0AoKnDojyuN8YdGZVaGpoQmhhOE5PbU1pcGRVWFctcUE";
 		PL.SpreadSheet.GetData("select%20*%20order%20by%20A%2C%20B%2C%20C");
@@ -100,7 +105,9 @@ DramProject.AddPage = function (name)
 
 DramProject.AddCardToLastPage = function (row)
 {
-	var div = $("<div>").addClass("card").append($("<img>").addClass("bottle-image").attr("src", row[indexPictureUrl].v));
+	// var divImg = $("<div>").addClass("left-image").append($("<img>").addClass("bottle-image").attr("src", row[indexPictureUrl].v));
+	var divImg = $("<div>").addClass("left-image").css("background-image", "url(" + row[indexPictureUrl].v + ")");
+	var div = $("<div>").addClass("card").append(divImg);
 	var innerDiv = $("<div class='info'>").append($("<h1>").append(row[indexDistillery].v));
 	innerDiv.append($("<h2>").append(row[indexWhiskyName].v));
 	innerDiv.append($("<p>").append(row[indexDescription].v));
@@ -146,6 +153,27 @@ DramProject.UpdatePages = function ()
 
 	// Delete dummy cards
 	$(".dummy-card").remove();
+};
+
+DramProject.RunFooterAnimation = function() 
+{
+	var footerHeight = 0;
+	if ($("#footer").height() === footerOpenHeight)
+	{
+		footerHeight = footerCloseHeight;
+	}
+	else
+	{
+		footerHeight = footerOpenHeight;
+	}
+
+	$("#footer").animate(
+		{ height: footerHeight },
+		{
+			queue: false,
+			duration: 500,
+		}
+	);
 };
 
 } (PL.DramProject = PL.DramProject || {}, $));
