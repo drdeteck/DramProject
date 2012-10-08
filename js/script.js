@@ -90,6 +90,7 @@ DramProject.UpdateMenu = function(pageToSelect)
 		pageId = $(this).attr('page');
 		num = $('#paging a').index(this);
 		$(pageId).parent().animate({scrollTop: ($("#wrapper").height() * num)}, 'slow');
+		PL.DramProject.RunFooterAnimation(false);
 		$("#paging li").removeClass("active");
 		$(this).parent().addClass("active");
 	});
@@ -148,17 +149,19 @@ DramProject.UpdatePages = function ()
 	// Setup Round-About
 	$("#wrapper ul").each(function(index, value)
 	{
-		$(this).roundabout();
+		$(this).roundabout({
+         duration: 400,
+     	});
 	});
 
 	// Delete dummy cards
 	$(".dummy-card").remove();
 };
 
-DramProject.RunFooterAnimation = function() 
+DramProject.RunFooterAnimation = function(doOpen) 
 {
 	var footerHeight = 0;
-	if ($("#footer").height() === footerOpenHeight)
+	if ((typeof doOpen != 'boolean' && $("#footer").height() === footerOpenHeight) || (typeof doOpen === 'boolean' && !doOpen))
 	{
 		footerHeight = footerCloseHeight;
 	}
