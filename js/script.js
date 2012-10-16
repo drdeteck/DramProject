@@ -110,7 +110,9 @@ DramProject.AddCardToLastPage = function (row)
 	var divImg = $("<div>").addClass("left-image").css("background-image", "url(" + row[indexPictureUrl].v + ")");
 	var div = $("<div>").addClass("card").append(divImg);
 	var innerDiv = $("<div class='info'>").append($("<h1>").append(row[indexDistillery].v));
-	innerDiv.append($("<h2>").append(row[indexWhiskyName].v));
+	var whiskyName = row[indexWhiskyName].v;
+	whiskyName += row[indexAlcohol].v ?  " - " + row[indexAlcohol].v : "";
+	innerDiv.append($("<h2>").append(whiskyName));
 	innerDiv.append($("<p>").append(row[indexDescription].v));
 	innerDiv.append($("<h3>").append("Nose"));
 	innerDiv.append($("<div>").append(row[indexNose].v));
