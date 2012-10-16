@@ -112,6 +112,7 @@ h1
 #nav-list
 {
 	background-color: white;
+	overflow-y: scroll;
 }
 
 .span3
