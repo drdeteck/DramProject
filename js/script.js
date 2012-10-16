@@ -146,6 +146,13 @@ DramProject.UpdatePages = function ()
 	$("#wrapper").css("padding-top", padding);
 	$(".page").css("padding-bottom", padding);
 
+	// Menu height setup for scroll bar
+	var span3 = parseInt($(".span3").css("margin-top").replace("px", ""));
+	var titleHeight = $(".title-background").outerHeight() + parseInt($(".title-background").css("margin-bottom").replace("px", ""));
+	var menuPadding = $("#nav-list").outerHeight() - $("#nav-list").height();
+	var menuMargin = parseInt($("#nav-list").css("margin-bottom").replace("px", ""));
+	$("#nav-list").height(docHeight - (menuPadding + menuMargin + titleHeight + span3));
+
 	// Setup Round-About
 	$("#wrapper ul").each(function(index, value)
 	{

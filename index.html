@@ -1,10 +1,11 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<meta name="description" content="Info library on Scotch Whisky Single Malt" />
 	<meta name="author" content="Philippe Lavoie" />
+
 
 	<title>The Dram Project</title>
 
@@ -14,7 +15,8 @@
 
 	<script type="text/javascript" src="js/script.js"></script>
 
-	<link href='http://fonts.googleapis.com/css?family=Cabin+Condensed' rel='stylesheet' type='text/css' />
+	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+	<link href='http://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css' />
 	<link type="text/css" href="css/bootstrap.min.css" rel="stylesheet" />
 
 	<link type="text/css" href="css/style.css" rel="stylesheet" />
@@ -24,29 +26,25 @@
 	<!-- Menu -->
 	<div class="span3">
 		<div class="well title-background">
-			<span class="title">The</span></br>
-			<span class="title">Dram</span></br>
+			<span class="title">The</span><br/>
+			<span class="title">Dram</span><br/>
 			<span class="title">Project</span>
 		</div>
 		<div id="nav-list" class="nav well sidebar-nav"></div>
 	</div>
 
-	<div id="wrapper">
-
-	</div>
+	<div id="wrapper"></div>
 
 	<div id="footer">
 		<div id="footer-button" class="footer-border">
-			<!-- <div id="footer-arrow">^</div> -->
 			<i class="icon-chevron-up footer-arrow"></i>
 		</div>
 		<div id="footer-content" class="footer-border">
-			
 			<div class="center footer-group" >
 				<div class="float-left footer-column" >
 					<h3>The Dram Project</h3>
 					<ul class="footer-list">
-						<li><a href="http://jquery.com/" >By: Philippe Lavoie</a></li>
+						<li><a href="http://www.linkedin.com/in/philippelavoie" >By: Philippe Lavoie</a></li>
 						<li><a href="https://github.com/drdeteck/DramProject/issues/new" >Bug Report</a></li>
 						<li><a href="http://houblonva.philippelavoie.com/" >Other project</a></li>
 						<li><a href="http://www.reddit.com/r/scotch" >Scotchit post</a></li>
@@ -64,13 +62,39 @@
 				<div class="float-left footer-column" >
 					<h3>More</h3>
 					<ul class="footer-list">
-						<li><a href="http://jquery.com/" >jQuery</a></li>
-						<li><a href="http://fredhq.com/projects/roundabout" >Roundabout</a></li>
-						<li><a href="http://twitter.github.com/bootstrap/" >Bootstrap</a></li>
-						<li><a href="http://glyphicons.com/" >Glyphicons</a></li>
+						<li><i class="icon-question-sign"></i> <a href="#about" role="button" data-toggle="modal" >About</a></li>
+						<li><i class="icon-envelope"></i> <a href="mailto:phil@philippelavoie.com" >Email me</a></li>
 					</ul>
 				</div>
 			</div>
+		</div>
+	</div>
+
+	<div class="modal hide" id="about" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="myModalLabel">The Dram Project</h3>
+		</div>
+		<div class="modal-body" style="font-size:17px;">
+			<p>
+				My name is Philippe and I'm from Montréal. 
+				I'm a scotch amateur since 2011 and I read <strong><a href="http://www.reddit.com/r/scotch">Scotchit</a></strong> since then.
+				I went in Scotland for 3 weeks. 
+				There, I visited 6 distilleries and began what I call my bootcamp. 
+			</p>
+			<p>
+				When I came back, I had this idea of creating a reference website to hold the common distilleries and their whisky.
+				That was a nice way to discover the latest web technologies like <strong><a href="http://twitter.github.com/bootstrap/">Bootstrap</a></strong>
+				and to create something nice where you can find the official tasting notes of the most common whisky.
+			</p>
+			<p>
+				So, I hope you enjoy the site. You can <strong><a href="https://github.com/drdeteck/DramProject/issues/new">report a bug, send me a suggestion</a></strong> or a 
+				<strong><a href="mailto:phil@philippelavoie.com">contact me</a></strong> for any questions.
+			</p>
+			<p class="signature">Phil</p>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-inverse" data-dismiss="modal" aria-hidden="true">Close</button>
 		</div>
 	</div>
 
