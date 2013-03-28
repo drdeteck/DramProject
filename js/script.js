@@ -8,6 +8,7 @@ window.PL = window.PL || {};
 // Public Properties
 DramProject.Menu = $("<ul>").attr("id", "paging").addClass("nav nav-list");
 DramProject.Pages = [];
+DramProject.ViewModel = null;
 
 // Private Properties
 var menuFirstHeader = true;
@@ -40,9 +41,13 @@ DramProject.Initialize = function () {
 		// Setup footer
 		$("#footer-button").click(PL.DramProject.RunFooterAnimation);
 
+		// Knockout apply bindings
+		DramProject.ViewModel = new DramViewModel();
+		ko.applyBindings(DramProject.ViewModel);
+		
 		// Setup Data
 		PL.SpreadSheet.Key = "0AoKnDojyuN8YdGZVaGpoQmhhOE5PbU1pcGRVWFctcUE";
-		PL.SpreadSheet.GetData("select%20*%20order%20by%20A%2C%20B%2C%20C");
+		PL.SpreadSheet.GetData("select%20*%20order%20by%20A%2C%20B%2C%20C", DramProject.ViewModel.MapperCallback);
 
 		// Settings sizes
 		docHeight = $(document).height();
@@ -245,10 +250,9 @@ SpreadSheet.GetData = function (args, callback)
 	$.get(url, callback, "text");
 };
 
-// Do not work yet
 SpreadSheet.DefaultCallback = function (data, textStatus, jqXHR)
 {
-	SpreadSheet.Data = CleanVizResponse(data);
+	SpreadSheet.Data = SpreadSheet.CleanVizResponse(data);
 	// console.log(SpreadSheet.Data);
 
 	var currentMenuHeader = "";
@@ -308,7 +312,7 @@ SpreadSheet.DefaultCallback = function (data, textStatus, jqXHR)
 	PL.DramProject.UpdatePages();
 };
 
-function CleanVizResponse(data)
+SpreadSheet.CleanVizResponse = function(data)
 {
 	try
 	{
