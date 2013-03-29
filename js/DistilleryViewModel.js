@@ -1,5 +1,5 @@
 // Class to holds a Bottle attributes
-function Bottle(region, distillery, order, name, alcohol, appearance, nose, taste, finish, description, externalurl, pictureurl, scotchiturl) {
+function BottleViewModel(region, distillery, order, name, alcohol, appearance, nose, taste, finish, description, externalurl, pictureurl, scotchiturl) {
 	var self = this;
 	
 	self.region = region;
@@ -18,12 +18,11 @@ function Bottle(region, distillery, order, name, alcohol, appearance, nose, tast
 }
 
 
-function DistilleryViewModel() {
+function DistilleryViewModel(region, distillery) {
 	var self = this;
 	
-	self.Region = "";
-	self.Distillery = "";
-	self.BottlesCount = "";
+	self.Region = region;
+	self.Distillery = distillery;
 	
 	self.Bottles = ko.observableArray();
 }

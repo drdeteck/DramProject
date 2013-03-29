@@ -34,7 +34,13 @@
 			<span class="title">Dram</span><br/>
 			<span class="title">Project</span>
 		</div>
-		<div id="nav-list" class="nav well sidebar-nav"></div>
+		<div id="nav-list" class="nav well sidebar-nav">
+			<ul id="paging" class="nav nav-list" data-bind="foreach: PL.DramProject.ViewModel.Regions">
+				<li data-bind="css: Class">
+					<a data-bind="text: Name"></a>
+				</li>
+			</ul>
+		</div>
 	</div>
 
 	<div id="wrapper"></div>
