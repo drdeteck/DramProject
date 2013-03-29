@@ -51,35 +51,39 @@ DramProject.Initialize = function () {
 
 		// Settings sizes
 		docHeight = $(document).height();
+		
+		// Menu height setup for scroll bar
+		console.log($("#nav-list").offset().top);
+		$("#nav-list").height($(document).height() - $("#nav-list").offset().top - 20);
 	});
 };
 
-DramProject.AddMenuHeader = function (name)
-{
-	if (!menuFirstHeader)
-	{
-		DramProject.Menu.append($("<li>").addClass("divider"));
-	}
-	else
-	{
-		menuFirstHeader = false;
-	}
+// DramProject.AddMenuHeader = function (name)
+// {
+	// if (!menuFirstHeader)
+	// {
+		// DramProject.Menu.append($("<li>").addClass("divider"));
+	// }
+	// else
+	// {
+		// menuFirstHeader = false;
+	// }
 
-	// <li class="nav-header">Speyside</li>
-	DramProject.Menu.append($("<li>").addClass("nav-header").append(name)); 
-};
+	// // <li class="nav-header">Speyside</li>
+	// DramProject.Menu.append($("<li>").addClass("nav-header").append(name)); 
+// };
 
-DramProject.AddMenuItem = function (name)
-{
-	// <li><a page="#page1">Page 1</a></li>
-	DramProject.Menu.append($("<li>").append($("<a>").attr("page", "#" + PL.Utilities.Idfy(name)).append(name))); 
-};
+// DramProject.AddMenuItem = function (name)
+// {
+	// // <li><a page="#page1">Page 1</a></li>
+	// DramProject.Menu.append($("<li>").append($("<a>").attr("page", "#" + PL.Utilities.Idfy(name)).append(name))); 
+// };
 
 DramProject.UpdateMenu = function(pageToSelect)
 {
 	// Write menu
-	$("#nav-list").html(DramProject.Menu[0].outerHTML);
-
+	//$("#nav-list").html(DramProject.Menu[0].outerHTML);
+console.log("1");
 	// Select item
 	if (!pageToSelect)
 	{
@@ -101,39 +105,39 @@ DramProject.UpdateMenu = function(pageToSelect)
 	});
 };
 
-DramProject.AddPage = function (name)
-{
-	var nameId = PL.Utilities.Idfy(name);
-	var page = $("<div>").attr("id", nameId).addClass("page").append($("<ul>").attr("id", nameId + roundaboutIdSuffix));
-	DramProject.Pages.push(page);
-	lastAddedPageIndex++;
-};
+// DramProject.AddPage = function (name)
+// {
+	// var nameId = PL.Utilities.Idfy(name);
+	// var page = $("<div>").attr("id", nameId).addClass("page").append($("<ul>").attr("id", nameId + roundaboutIdSuffix));
+	// DramProject.Pages.push(page);
+	// lastAddedPageIndex++;
+// };
 
-DramProject.AddCardToLastPage = function (row)
-{
-	// var divImg = $("<div>").addClass("left-image").append($("<img>").addClass("bottle-image").attr("src", row[indexPictureUrl].v));
-	var divImg = $("<div>").addClass("left-image").css("background-image", "url(" + row[indexPictureUrl].v + ")");
-	var div = $("<div>").addClass("card").append(divImg);
-	var innerDiv = $("<div class='info'>").append($("<h1>").append(row[indexDistillery].v));
-	innerDiv.append($("<h2>").append(row[indexWhiskyName].v));
-	innerDiv.append($("<p>").append(row[indexDescription].v));
-	innerDiv.append($("<h3>").append("Nose"));
-	innerDiv.append($("<div>").append(row[indexNose].v));
-	innerDiv.append($("<h3>").append("Taste"));
-	innerDiv.append($("<p>").append(row[indexTaste].v));
-	innerDiv.append($("<h3>").append("Finish"));
-	innerDiv.append($("<span>").append(row[indexFinish].v));
-	div.append(innerDiv);
+// DramProject.AddCardToLastPage = function (row)
+// {
+	// // var divImg = $("<div>").addClass("left-image").append($("<img>").addClass("bottle-image").attr("src", row[indexPictureUrl].v));
+	// var divImg = $("<div>").addClass("left-image").css("background-image", "url(" + row[indexPictureUrl].v + ")");
+	// var div = $("<div>").addClass("card").append(divImg);
+	// var innerDiv = $("<div class='info'>").append($("<h1>").append(row[indexDistillery].v));
+	// innerDiv.append($("<h2>").append(row[indexWhiskyName].v));
+	// innerDiv.append($("<p>").append(row[indexDescription].v));
+	// innerDiv.append($("<h3>").append("Nose"));
+	// innerDiv.append($("<div>").append(row[indexNose].v));
+	// innerDiv.append($("<h3>").append("Taste"));
+	// innerDiv.append($("<p>").append(row[indexTaste].v));
+	// innerDiv.append($("<h3>").append("Finish"));
+	// innerDiv.append($("<span>").append(row[indexFinish].v));
+	// div.append(innerDiv);
 
-	DramProject.Pages[lastAddedPageIndex].children("ul").append($("<li>").append(div));
-};
+	// DramProject.Pages[lastAddedPageIndex].children("ul").append($("<li>").append(div));
+// };
 
 DramProject.AddDummyCardToLastPage = function ()
 {
 	DramProject.Pages[lastAddedPageIndex].children("ul").append($("<li>").addClass("dummy-card"));
 }
 
-DramProject.UpdatePages = function ()
+DramProject.UpdatePage = function ()
 {
 	var pages = [];
 

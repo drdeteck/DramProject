@@ -35,15 +35,49 @@
 			<span class="title">Project</span>
 		</div>
 		<div id="nav-list" class="nav well sidebar-nav">
-			<ul id="paging" class="nav nav-list" data-bind="foreach: PL.DramProject.ViewModel.Regions">
-				<li data-bind="css: Class">
-					<a data-bind="text: Name"></a>
+			<ul id="paging" class="nav nav-list" data-bind="foreach: { data: PL.DramProject.ViewModel.Regions, afterRender: PL.DramProject.UpdateMenu }">
+				<!-- ko if: Class !== "" -->
+				<li data-bind="text: Name, css: Class"></li>
+				<!-- /ko -->
+				<!-- ko if: Class === "" -->
+				<li>
+					<a data-bind="text: Name, attr: { 'href' : '#' + Name }" ></a>
+				</li>
+				<!-- /ko -->
 				</li>
 			</ul>
 		</div>
 	</div>
 
-	<div id="wrapper"></div>
+	<div id="wrapper" data-bind="template: { name: 'distillery-template' , foreach: PL.DramProject.ViewModel.Distilleries }"></div>
+	
+	
+	
+	<script type="text/html" id="distillery-template">
+		<div class="page" data-bind="attr : { 'id' : Distillery }">
+		   <ul data-bind="attr : { 'id' : Distillery + '-roundabout' }, template: { name: 'bottle-template' , foreach: Bottles}"></ul>
+		</div>
+	</script>
+	
+	<script type="text/html" id="bottle-template">
+		<li>
+			<div class="card">
+			   <div class="left-image" style="background-image: url();" data-bind="style: { 'background-image': 'url(' + PictureUrl + ');' }"></div>
+			   <div class="info">
+				  <h1 data-bind="text: Distillery"></h1>
+				  <h2 data-bind="text: Name"></h2>
+				  <p data-bind="text: Description"></p>
+				  <h3>Nose</h3>
+				  <div data-bind="text: Nose"></div>
+				  <h3>Taste</h3>
+				  <p data-bind="text: Taste"></p>
+				  <h3>Finish</h3>
+				  <span data-bind="text: Finish"></span>
+			   </div>
+			</div>
+		</li>
+	</script>
+
 
 	<div id="footer">
 		<div id="footer-button" class="footer-border">

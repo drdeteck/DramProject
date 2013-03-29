@@ -2,19 +2,19 @@
 function BottleViewModel(region, distillery, order, name, alcohol, appearance, nose, taste, finish, description, externalurl, pictureurl, scotchiturl) {
 	var self = this;
 	
-	self.region = region;
-	self.distillery = distillery;
-	self.order = order;
-	self.name = name;
-	self.alcohol = alcohol;
-	self.appearance = appearance;
-	self.nose = nose;
-	self.taste = taste;
-	self.finish = finish;
-	self.description = description;
-	self.externalurl = externalurl;
-	self.pictureurl = pictureurl;
-	self.scotchiturl = scotchiturl;
+	self.Region = region;
+	self.Distillery = distillery;
+	self.Order = order;
+	self.Name = name;
+	self.Alcohol = alcohol;
+	self.Appearance = appearance;
+	self.Nose = nose;
+	self.Taste = taste;
+	self.Finish = finish;
+	self.Description = description;
+	self.ExternalUrl = externalurl;
+	self.PictureUrl = pictureurl;
+	self.ScotchitUrl = scotchiturl;
 }
 
 
