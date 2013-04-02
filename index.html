@@ -9,7 +9,7 @@
 
 	<title>The Dram Project</title>
 
-	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="js/jquery.roundabout.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/knockout-2.2.1.js"></script>
@@ -28,56 +28,19 @@
 <body class="center">
 
 	<!-- Menu -->
-	<div class="span3">
-		<div class="well title-background">
+	<div id="left-col" class="span3">
+		<div id="title-box" class="well title-background">
 			<span class="title">The</span><br/>
 			<span class="title">Dram</span><br/>
 			<span class="title">Project</span>
 		</div>
 		<div id="nav-list" class="nav well sidebar-nav">
-			<ul id="paging" class="nav nav-list" data-bind="foreach: { data: PL.DramProject.ViewModel.Regions, afterRender: PL.DramProject.UpdateMenu }">
-				<!-- ko if: Class !== "" -->
-				<li data-bind="text: Name, css: Class"></li>
-				<!-- /ko -->
-				<!-- ko if: Class === "" -->
-				<li>
-					<a data-bind="text: Name, attr: { 'href' : '#' + Name }" ></a>
-				</li>
-				<!-- /ko -->
-				</li>
+			<ul id="paging" class="nav nav-list" data-bind="template: {name: MenuDisplayMode, foreach: PL.DramProject.ViewModel.Regions, afterRender: PL.DramProject.ViewModel.RenderMenuItem }">
 			</ul>
 		</div>
 	</div>
 
-	<div id="wrapper" data-bind="template: { name: 'distillery-template' , foreach: PL.DramProject.ViewModel.Distilleries }"></div>
-	
-	
-	
-	<script type="text/html" id="distillery-template">
-		<div class="page" data-bind="attr : { 'id' : Distillery }">
-		   <ul data-bind="attr : { 'id' : Distillery + '-roundabout' }, template: { name: 'bottle-template' , foreach: Bottles}"></ul>
-		</div>
-	</script>
-	
-	<script type="text/html" id="bottle-template">
-		<li>
-			<div class="card">
-			   <div class="left-image" style="background-image: url();" data-bind="style: { 'background-image': 'url(' + PictureUrl + ');' }"></div>
-			   <div class="info">
-				  <h1 data-bind="text: Distillery"></h1>
-				  <h2 data-bind="text: Name"></h2>
-				  <p data-bind="text: Description"></p>
-				  <h3>Nose</h3>
-				  <div data-bind="text: Nose"></div>
-				  <h3>Taste</h3>
-				  <p data-bind="text: Taste"></p>
-				  <h3>Finish</h3>
-				  <span data-bind="text: Finish"></span>
-			   </div>
-			</div>
-		</li>
-	</script>
-
+	<div id="wrapper" data-bind="template: { name: 'distillery-template' , foreach: PL.DramProject.ViewModel.Distilleries, afterRender: PL.DramProject.ViewModel.RenderDistillery }"></div>
 
 	<div id="footer">
 		<div id="footer-button" class="footer-border">
@@ -143,4 +106,33 @@
 	</div>
 
 </body>
+
+<!-- Templates -->
+
+<script type="text/html" id="menu-header-template"><li data-bind="text: Name, css: Class"></li></script>				
+<script type="text/html" id="menu-item-template"><li><a data-bind="text: Name, attr: { 'href' : '#' + PL.Utilities.Idfy(Name) }" ></a></li></script>				
+<script type="text/html" id="distillery-template">
+	<div class="page" data-bind="attr : { 'id' : PL.Utilities.Idfy(Distillery) }">
+	   <ul data-bind="attr : { 'id' : PL.Utilities.Idfy(Distillery) + '-roundabout' }, template: { name: 'bottle-template' , foreach: Bottles}"></ul>
+	</div>
+</script>
+<script type="text/html" id="bottle-template">
+	<li class="card-holder" data-bind="css : PL.Utilities.Idfy(Distillery)">
+		<div class="card">
+		   <div class="left-image" data-bind="style: { 'backgroundImage': 'url(' + PictureUrl + ')' }"></div>
+		   <div class="info">
+			  <h1 data-bind="text: Distillery"></h1>
+			  <h2 data-bind="text: Name"></h2>
+			  <p data-bind="text: Description"></p>
+			  <h3>Nose</h3>
+			  <div data-bind="text: Nose"></div>
+			  <h3>Taste</h3>
+			  <p data-bind="text: Taste"></p>
+			  <h3>Finish</h3>
+			  <span data-bind="text: Finish"></span>
+		   </div>
+		</div>
+	</li>
+</script>
+
 </html>
