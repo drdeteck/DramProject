@@ -114,11 +114,29 @@ function DramViewModel() {
 		
 	};
 	
-	self.RenderDistillery = function(element, itemObject) {
+	self.RenderDistillery = function (element, itemObject) {
 		// Setup Round-About
-		if	($(document).width() > 1400) {
+		if	($(window).width() > 1400) {
 			$(element).filter("div.page").children("ul").roundabout({ duration: 400});
 		}
+		else
+		{	
+			$(element).children("ul").children("li").click(function (event) {
+			if ($(window).width() < 1400) {
+				var pageList = $(this).parent().children();
+				var index = $(this).index() + 1;
+				
+				if (index === pageList.length) index = 0;
+				
+				console.log(index);
+				$(pageList.get(index)).show("slide", { direction: "right" }, 500);
+				
+				$(this).hide("slide", { direction: "left" }, 500);
+			}});
+			
+			$(element).children("ul").children("li").first().show();
+		}
+		
 		$(element).filter("div.page").find("li.removeme").remove();
 		
 		if (firstPage) {

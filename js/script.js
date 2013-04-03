@@ -28,7 +28,7 @@ DramProject.Initialize = function () {
 	});
 	
 	$(window).resize(function() {
-		console.log("Document.Resize")
+		PL.DramProject.RefreshMenuHeight();
 	});
 	
 	$(window).load(function () {
@@ -40,7 +40,7 @@ DramProject.Initialize = function () {
 // Resize the left menu size
 DramProject.RefreshMenuHeight = function() {
 	var menuPadding = $("#nav-list").outerHeight(true) - $("#nav-list").height();
-	$("#nav-list").height($(document).height()-( menuPadding + $("#nav-list").offset().top));
+	$("#nav-list").height($(window).height()-( menuPadding + $("#nav-list").offset().top));
 };
 
 DramProject.RunFooterAnimation = function(doOpen) {

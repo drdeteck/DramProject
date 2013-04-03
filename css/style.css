@@ -94,6 +94,11 @@ ul
 	overflow: hidden;
 }
 
+.roundabout-in-focus .info
+{
+	overflow-y: auto; 
+}
+
 .left-image
 {
 	height: 45em; /* Resize aware */
