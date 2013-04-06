@@ -690,7 +690,7 @@
 
 						// fixes issue #24, animation changed as of jQuery 1.7.2
 						// also addresses issue #29, using easing breaks "linear"
-						if (methods.compareVersions.apply(null, [$().jquery, "1.7.2"]) >= 0 && !($.easing["easeOutBack"])) {
+						if (true) {
 							newBearing = passedData.start + ((bearing - passedData.start) * newBearing);
 						}
 
