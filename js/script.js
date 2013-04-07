@@ -29,12 +29,21 @@ DramProject.Initialize = function () {
 	
 	$(window).resize(function() {
 		PL.DramProject.RefreshMenuHeight();
+		ko.applyBindings(DramProject.ViewModel);
 	});
 	
 	$(window).load(function () {
 		// Menu height setup for scroll bar
 		PL.DramProject.RefreshMenuHeight();
 	});
+};
+
+DramProject.IsTablet = function() {
+	return $(window).width() <= 1400;
+};
+
+DramProject.IsFullSize = function() {
+	return $(window).width() > 1400;
 };
 
 // Resize the left menu size

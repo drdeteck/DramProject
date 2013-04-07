@@ -25,7 +25,7 @@ function DramViewModel() {
 	self.Regions = ko.observableArray();
 	
 	self.MapperCallback = function(data, textStatus, jqXHR) {
-	
+
 		data = PL.SpreadSheet.CleanVizResponse(data);
 		// Group the data first
 		var distilleries = _.groupBy(data, function(scotch){
@@ -48,7 +48,7 @@ function DramViewModel() {
 				}
 				
 				firstTime = false;
-					
+
 				self.Regions.push({ Name: region, Class: "nav-header" });
 				lastRegion = region;
 			}
@@ -87,7 +87,7 @@ function DramViewModel() {
 			row[indexExternalUrl].v,
 			row[indexPictureUrl].v,
 			row[indexScotchitUrl].v
-		);
+			);
 	};
 	
 	self.MenuDisplayMode = function(menuItem) {
@@ -100,12 +100,19 @@ function DramViewModel() {
 				self.MenuSelectedIndex(0);
 				$(element).addClass("active");
 			}
-					
+
+			// Paging snippet
 			$($(element).children('a')).click(function(event) {
 				event.preventDefault();
-				pageId = $(this).attr('href');
-				num = $('#paging a').index(this);
-				$(pageId).parent().animate({scrollTop: ($("#wrapper").height() * num)}, 'slow');
+				var pageId = $(this).attr('href');
+				var num = $('#paging a').index(this);
+				var scrollHeight = $("#wrapper").height() * num;
+				
+				if (PL.DramProject.IsTablet()) {
+					scrollHeight = ($(window).height() - 18) * num;
+				}
+
+				$(pageId).parent().animate({scrollTop: scrollHeight}, 'slow');
 				PL.DramProject.RunFooterAnimation(false);
 				$("#paging li").removeClass("active");
 				$(this).parent().addClass("active");
@@ -116,32 +123,13 @@ function DramViewModel() {
 	
 	self.RenderDistillery = function (element, itemObject) {
 		// Setup Round-About
-		if	($(window).width() > 1400) {
-			$(element).filter("div.page").children("ul").roundabout({ duration: 400});
-		}
-		else
-		{	
-			$(element).children("ul").children("li").click(function (event) {
-			if ($(window).width() < 1400) {
-				var pageList = $(this).parent().children();
-				var index = $(this).index() + 1;
-				
-				if (index === pageList.length) index = 0;
-				
-				console.log(index);
-				$(pageList.get(index)).show("slide", { direction: "right" }, 500);
-				
-				$(this).hide("slide", { direction: "left" }, 500);
-			}});
-			
-			$(element).children("ul").children("li").first().show();
-		}
-		
-		$(element).filter("div.page").find("li.removeme").remove();
-		
+	if	(PL.DramProject.IsFullSize()) {
+		$(element).filter("div.page").children("ul").roundabout({ duration: 400});
+
+
 		if (firstPage) {
 			firstPage = false;
-				
+			
 			// Setup sizing
 			var docHeight = $(document).height();
 			var over = docHeight - $(".page").first().height();
@@ -149,7 +137,35 @@ function DramViewModel() {
 			$("#wrapper").height(docHeight - pageBottomPadding);
 			$("#wrapper").css("padding-top", pageBottomPadding);
 		}
-		
-		$(".page").css("padding-bottom", pageBottomPadding);
-	};
+	}
+	else
+	{	
+		$(element).children("ul").children("li").click(function (event) {
+			if ($(window).width() < 1400) {
+				var pageList = $(this).parent().children();
+				var index = $(this).index() + 1;
+				
+				if (index === pageList.length) index = 0;
+				
+				$(pageList.get(index)).show("slide", { direction: "right" }, 500);
+				
+				$(this).hide("slide", { direction: "left" }, 500);
+			}});
+
+		$(element).children("ul").children("li").first().show();
+
+		$(element).addClass("well");
+		$(element).height($(window).height() - 40);
+		$(element).find(".left-image").height($(window).height() - 110);
+		$(element).find(".info").height($(window).height() - 110);
+
+		// Setup sizing
+		$("#wrapper").height($(window).height() - 42);
+	}
+
+	$(element).filter("div.page").find("li.removeme").remove();
+
+
+	$(".page").css("padding-bottom", pageBottomPadding);
+};
 }		
