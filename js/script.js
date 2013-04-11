@@ -61,7 +61,7 @@ DramProject.Setup = function () {
 };
 
 DramProject.IsTablet = function() {
-	return $(window).width() <= 1400;
+	return $(window).width() <= 1400 && $(window).width() > 480;
 };
 
 DramProject.IsFullSize = function() {

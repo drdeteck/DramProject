@@ -97,6 +97,10 @@ function DramViewModel() {
 	self.RenderMenuItem = function(element, itemObject) {
 		if (PL.DramProject.IsMobile()) {
 			$("#paging").listview("refresh");
+			// $(element).click(function(){
+			// 	document.a = $(element);
+			// 	$.mobile.changePage( $($(this).attr("href")), "slide", true, true);
+			// });
 		}
 		else {
 
@@ -127,8 +131,9 @@ function DramViewModel() {
 	};
 	
 	self.RenderDistillery = function (element, itemObject) {
-		// Setup Round-About
+
 	if	(PL.DramProject.IsFullSize()) {
+		// Setup Round-About
 		$(element).filter("div.page").children("ul").roundabout({ duration: 400});
 
 
@@ -143,8 +148,7 @@ function DramViewModel() {
 			$("#wrapper").css("padding-top", pageBottomPadding);
 		}
 	}
-	else
-	{	
+	else if (PL.DramProject.IsTablet()) {	
 		$(element).children("ul").children("li").click(function (event) {
 			if ($(window).width() < 1400) {
 				var pageList = $(this).parent().children();
@@ -166,6 +170,10 @@ function DramViewModel() {
 
 		// Setup sizing
 		$("#wrapper").height($(window).height() - 42);
+	}
+	else if (PL.DramProject.IsMobile()) {
+
+		$(element).page();
 	}
 
 	$(element).filter("div.page").find("li.removeme").remove();

@@ -301,8 +301,7 @@ ul
 
 @media screen and (max-width: 600px) {
 	#about,
-	#footer,
-	#wrapper
+	#footer
 	{
 		display: none;
 	}
@@ -333,6 +332,12 @@ ul
 	{
 		overflow-y: hidden;
 		margin-bottom: 15px;
+	}
+
+	#left-col
+	{
+		position: relative;
+		z-index: 100;
 	}
 }
 
