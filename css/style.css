@@ -18,6 +18,8 @@ ul
 {
 	font-size: 40px;
 	line-height: 25px;
+	display: block;
+	margin-bottom: 6px;
 }
 
 .title-background
@@ -294,6 +296,43 @@ ul
 	{
 		height: auto;
 		width: auto;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	#about,
+	#footer,
+	#wrapper
+	{
+		display: none;
+	}
+
+	.title
+	{
+		display: inline;
+	}
+
+	.title-background
+	{
+		text-align: center;
+		padding-top: 15px;
+		padding-bottom: 10px;
+	}
+
+	.span3
+	{
+		margin-top: 0px;
+	}
+
+	li.divider
+	{
+		display: none;
+	}
+
+	#nav-list 
+	{
+		overflow-y: hidden;
+		margin-bottom: 15px;
 	}
 }
 

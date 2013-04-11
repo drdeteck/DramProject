@@ -95,30 +95,35 @@ function DramViewModel() {
 	};
 	
 	self.RenderMenuItem = function(element, itemObject) {
-		if ($(element).children('a').length > 0) {
-			if (self.MenuSelectedIndex() === -1) {
-				self.MenuSelectedIndex(0);
-				$(element).addClass("active");
-			}
+		if (PL.DramProject.IsMobile()) {
+			$("#paging").listview("refresh");
+		}
+		else {
 
-			// Paging snippet
-			$($(element).children('a')).click(function(event) {
-				event.preventDefault();
-				var pageId = $(this).attr('href');
-				var num = $('#paging a').index(this);
-				var scrollHeight = $("#wrapper").height() * num;
-				
-				if (PL.DramProject.IsTablet()) {
-					scrollHeight = ($(window).height() - 18) * num;
+			if ($(element).children('a').length > 0) {
+				if (self.MenuSelectedIndex() === -1) {
+					self.MenuSelectedIndex(0);
+					$(element).addClass("active");
 				}
 
-				$(pageId).parent().animate({scrollTop: scrollHeight}, 'slow');
-				PL.DramProject.RunFooterAnimation(false);
-				$("#paging li").removeClass("active");
-				$(this).parent().addClass("active");
-			});
+				// Paging snippet
+				$($(element).children('a')).click(function(event) {
+					event.preventDefault();
+					var pageId = $(this).attr('href');
+					var num = $('#paging a').index(this);
+					var scrollHeight = $("#wrapper").height() * num;
+					
+					if (PL.DramProject.IsTablet()) {
+						scrollHeight = ($(window).height() - 18) * num;
+					}
+
+					$(pageId).parent().animate({scrollTop: scrollHeight}, 'slow');
+					PL.DramProject.RunFooterAnimation(false);
+					$("#paging li").removeClass("active");
+					$(this).parent().addClass("active");
+				});
+			}
 		}
-		
 	};
 	
 	self.RenderDistillery = function (element, itemObject) {
