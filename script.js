@@ -6,11 +6,6 @@ window.PL = window.PL || {};
 (function (DramProject, $, undefined) {
 
 // Public Properties
-<<<<<<< HEAD
-DramProject.ViewModel = null;
-
-// Private Properties
-=======
 DramProject.Menu = $("<ul>").attr("id", "paging").addClass("nav nav-list");
 DramProject.Pages = [];
 
@@ -19,8 +14,6 @@ var menuFirstHeader = true;
 var docHeight = 0;
 var lastAddedPageIndex = -1;
 var roundaboutIdSuffix = "-roundabout";
-var footerOpenHeight = 250;
-var footerCloseHeight = 40;
 
 // Table indexes
 var indexRegion = 0;
@@ -36,101 +29,12 @@ var indexDescription = 9;
 var indexExternalUrl = 10;
 var indexPictureUrl = 11;
 var indexScotchitUrl = 12;
->>>>>>> First Pages commit
 
 // Public Methods
 DramProject.Initialize = function () {
 
-<<<<<<< HEAD
-	// Manage dependancy with YepNope
-	yepnope({
-		test: PL.DramProject.IsMobile(),
-		yep: { "jquery-mobile": "js/jquery.mobile-1.3.0.js" , "jquery-mobile-css": "css/jquery.mobile-1.3.0.css" },
-		nope: { "roundabout": "js/jquery.roundabout.min.js", "bootstrap-css": "css/bootstrap.min.css", "bootstrap": "js/bootstrap.min.js" },
-		callback: { "jquery-mobile": PL.DramProject.Setup, "roundabout": PL.DramProject.Setup}
-	});
-
-	// Add custom bindings for jQuery Mobile List refresh
-	ko.bindingHandlers.jqmRefreshList = { 
-		update: function(element, valueAccessor) { 
-	   ko.utils.unwrapObservable(valueAccessor()); //just to create a dependency
-	   if (PL.DramProject.IsMobile()) {
-	   	      $(element).listview("refresh"); 
-	       }
-	   } 
-	};
-};
-
-// Setup method. 
-// Create the View Model, Apply the Knockout binding and call the WebService
-DramProject.Setup = function () {
-=======
->>>>>>> First Pages commit
 	$(document).ready(function()
 	{
-		// Setup footer
-		$("#footer-button").click(PL.DramProject.RunFooterAnimation);
-
-<<<<<<< HEAD
-		// Knockout apply bindings
-		DramProject.ViewModel = new DramViewModel();
-		ko.applyBindings(DramProject.ViewModel);
-		
-		// Setup Data
-		PL.SpreadSheet.Key = "0AoKnDojyuN8YdGZVaGpoQmhhOE5PbU1pcGRVWFctcUE";
-		PL.SpreadSheet.GetData("select%20*%20order%20by%20A%2C%20B%2C%20C", DramProject.ViewModel.MapperCallback);
-	});
-
-	$(window).resize(function() {
-		PL.DramProject.RefreshMenuHeight();
-		ko.applyBindings(DramProject.ViewModel);
-	});
-
-	$(window).load(function () {
-		// Menu height setup for scroll bar
-		PL.DramProject.RefreshMenuHeight();
-	});
-};
-
-DramProject.IsTablet = function() {
-	return $(window).width() <= 1400 && $(window).width() > 480;
-};
-
-DramProject.IsFullSize = function() {
-	return $(window).width() > 1400;
-};
-
-DramProject.IsMobile = function() {
-	return $(window).width() <= 480;
-};
-
-// Resize the left menu size
-DramProject.RefreshMenuHeight = function() {
-	var menuPadding = $("#nav-list").outerHeight(true) - $("#nav-list").height();
-	$("#nav-list").height($(window).height()-( menuPadding + $("#nav-list").offset().top));
-};
-
-DramProject.RunFooterAnimation = function(doOpen) {
-	var footerOpenHeight = 250,
-	footerCloseHeight = 40,
-	footerHeight = 0;
-
-	if ((typeof doOpen != 'boolean' && $("#footer").height() === footerOpenHeight) || (typeof doOpen === 'boolean' && !doOpen)) {
-		footerHeight = footerCloseHeight;
-	}
-	else {
-		footerHeight = footerOpenHeight;
-	}
-
-	$("#footer").animate( { height: footerHeight }, {
-		queue: false,
-		duration: 500,
-		complete: function () {
-			$("#footer-button i").toggleClass("icon-chevron-up");
-			$("#footer-button i").toggleClass("icon-chevron-down");
-		}
-	});
-=======
 		// Setup Data
 		PL.SpreadSheet.Key = "0AoKnDojyuN8YdGZVaGpoQmhhOE5PbU1pcGRVWFctcUE";
 		PL.SpreadSheet.GetData("select%20*%20order%20by%20A%2C%20B%2C%20C");
@@ -181,7 +85,6 @@ DramProject.UpdateMenu = function(pageToSelect)
 		pageId = $(this).attr('page');
 		num = $('#paging a').index(this);
 		$(pageId).parent().animate({scrollTop: ($("#wrapper").height() * num)}, 'slow');
-		PL.DramProject.RunFooterAnimation(false);
 		$("#paging li").removeClass("active");
 		$(this).parent().addClass("active");
 	});
@@ -197,9 +100,7 @@ DramProject.AddPage = function (name)
 
 DramProject.AddCardToLastPage = function (row)
 {
-	// var divImg = $("<div>").addClass("left-image").append($("<img>").addClass("bottle-image").attr("src", row[indexPictureUrl].v));
-	var divImg = $("<div>").addClass("left-image").css("background-image", "url(" + row[indexPictureUrl].v + ")");
-	var div = $("<div>").addClass("card").append(divImg);
+	var div = $("<div>").addClass("card").append($("<img>").addClass("bottle-image").attr("src", row[indexPictureUrl].v));
 	var innerDiv = $("<div class='info'>").append($("<h1>").append(row[indexDistillery].v));
 	innerDiv.append($("<h2>").append(row[indexWhiskyName].v));
 	innerDiv.append($("<p>").append(row[indexDescription].v));
@@ -240,39 +141,11 @@ DramProject.UpdatePages = function ()
 	// Setup Round-About
 	$("#wrapper ul").each(function(index, value)
 	{
-		$(this).roundabout({
-         duration: 400,
-     	});
+		$(this).roundabout();
 	});
 
 	// Delete dummy cards
 	$(".dummy-card").remove();
-};
-
-DramProject.RunFooterAnimation = function(doOpen) 
-{
-	var footerHeight = 0;
-	if ((typeof doOpen != 'boolean' && $("#footer").height() === footerOpenHeight) || (typeof doOpen === 'boolean' && !doOpen))
-	{
-		footerHeight = footerCloseHeight;
-	}
-	else
-	{
-		footerHeight = footerOpenHeight;
-	}
-
-	$("#footer").animate(
-		{ height: footerHeight },
-		{
-			queue: false,
-			duration: 500,
-			complete: function () {
-				$("#footer-button i").toggleClass("icon-chevron-up");
-				$("#footer-button i").toggleClass("icon-chevron-down");
-			}
-		}
-		);
->>>>>>> First Pages commit
 };
 
 } (PL.DramProject = PL.DramProject || {}, $));
@@ -319,24 +192,17 @@ SpreadSheet.GetData = function (args, callback)
 	{
 		args = vizArgsKey + args;
 	}
-<<<<<<< HEAD
-	
-=======
 
 	if (!callback)
 	{
 		callback = PL.SpreadSheet.DefaultCallback;
 	}
 
->>>>>>> First Pages commit
 	var url = vizPreKeyUrl + SpreadSheet.Key + args;
 
 	$.get(url, callback, "text");
 };
 
-<<<<<<< HEAD
-SpreadSheet.CleanVizResponse = function(data)
-=======
 // Do not work yet
 SpreadSheet.DefaultCallback = function (data, textStatus, jqXHR)
 {
@@ -401,7 +267,6 @@ SpreadSheet.DefaultCallback = function (data, textStatus, jqXHR)
 };
 
 function CleanVizResponse(data)
->>>>>>> First Pages commit
 {
 	try
 	{
