@@ -15,6 +15,8 @@ function DramViewModel() {
 	var indexExternalUrl = 10;
 	var indexPictureUrl = 11;
 	var indexScotchitUrl = 12;
+	var indexSAQUrl = 13;
+	var indexSAQPrice = 14;
 	
 	var firstPage = true;
 	var pageBottomPadding = "";
@@ -86,7 +88,9 @@ function DramViewModel() {
 			row[indexDescription].v,
 			row[indexExternalUrl].v,
 			row[indexPictureUrl].v,
-			row[indexScotchitUrl].v
+			row[indexScotchitUrl].v,
+			row[indexSAQUrl].v,
+			row[indexSAQPrice].v
 			);
 	};
 	
