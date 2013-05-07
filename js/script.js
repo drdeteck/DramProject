@@ -115,6 +115,13 @@ Utilities.Idfy = function (name)
 	return name.replace(" ", "");
 };
 
+Utilities.FormatMoney = function(number){
+	if (typeof number === "number") {
+		var num = number.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+		return num + " $";
+	}
+ };
+
 } (PL.Utilities = PL.Utilities || {}, $));
 
 
