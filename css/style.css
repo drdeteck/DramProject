@@ -161,8 +161,17 @@ ul
 
 .permalink {
 	float: right;
-	margin-top: 7px;
+	margin-top: 3px;
 	margin-left: 10px;
+	height: 23px;
+	width: 21px;
+}
+
+.permalink-icon {
+	background-image: url('../img/glyphicons_050_link.png');
+	float: right;
+	height: 23px;
+	width: 21px;
 }
 
 #nav-list
