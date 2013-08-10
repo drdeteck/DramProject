@@ -1,4 +1,4 @@
-function DramViewModel() {
+function DramViewModel(dataLoadedCallback) {
 	var self = this;
 	
 	// Table indexes
@@ -22,7 +22,7 @@ function DramViewModel() {
 	var pageBottomPadding = "";
 	
 	self.MenuSelectedIndex = ko.observable(-1);
-	
+	self.DataLoadedCallback = dataLoadedCallback;
 	self.Distilleries = ko.observableArray();
 	self.Regions = ko.observableArray();
 	
@@ -60,8 +60,9 @@ function DramViewModel() {
 			var distilleryViewModel =  new DistilleryViewModel(region, distillery);
 			
 			// Add the bottles to the Distillery View Model
-			_.each(bottles, function(bottle) { 
-				distilleryViewModel.Bottles.push(self.BottleMapper(bottle));
+			
+			_.each(bottles, function(bottle, index, list) { 
+				distilleryViewModel.Bottles.push(self.BottleMapper(bottle, index));
 			});
 			
 			// Add dummy Bottle if necessary (for the roundabout)
@@ -70,10 +71,14 @@ function DramViewModel() {
 			// Add the Distillery to the List of distilleries
 			self.Distilleries.push(distilleryViewModel);
 		});
+
+		_.each(self.DataLoadedCallback, function(callback) {
+			callback();
+		});
 	};
 	
 	// Receive a Google Spreadsheet row and return a BottleViewModel
-	self.BottleMapper = function(bottle) {
+	self.BottleMapper = function(bottle, index) {
 		var row = bottle.c;
 		return new BottleViewModel(
 			row[indexRegion].v,
@@ -90,7 +95,8 @@ function DramViewModel() {
 			row[indexPictureUrl].v,
 			row[indexScotchitUrl].v,
 			row[indexSAQUrl].v,
-			row[indexSAQPrice].v
+			row[indexSAQPrice].v,
+			index
 			);
 	};
 	
@@ -136,53 +142,54 @@ function DramViewModel() {
 	
 	self.RenderDistillery = function (element, itemObject) {
 
-	if	(PL.DramProject.IsFullSize()) {
-		// Setup Round-About
-		$(element).filter("div.page").children("ul").roundabout({ duration: 400});
+		if	(PL.DramProject.IsFullSize()) {
+			// Setup Round-About
+			$(element).filter("div.page").children("ul").roundabout({ duration: 400});
 
 
-		if (firstPage) {
-			firstPage = false;
-			
-			// Setup sizing
-			var docHeight = $(document).height();
-			var over = docHeight - $(".page").first().height();
-			pageBottomPadding = over / 2;
-			$("#wrapper").height(docHeight - pageBottomPadding);
-			$("#wrapper").css("padding-top", pageBottomPadding);
+			if (firstPage) {
+				firstPage = false;
+				
+				// Setup sizing
+				var docHeight = $(document).height();
+				var over = docHeight - $(".page").first().height();
+				pageBottomPadding = over / 2;
+				$("#wrapper").height(docHeight - pageBottomPadding);
+				$("#wrapper").css("padding-top", pageBottomPadding);
+			}
 		}
-	}
-	else if (PL.DramProject.IsTablet()) {	
-		$(element).children("ul").children("li").click(function (event) {
-			if ($(window).width() < 1400) {
-				var pageList = $(this).parent().children();
-				var index = $(this).index() + 1;
-				
-				if (index === pageList.length) index = 0;
-				
-				$(pageList.get(index)).show("slide", { direction: "right" }, 500);
-				
-				$(this).hide("slide", { direction: "left" }, 500);
-			}});
+		else if (PL.DramProject.IsTablet()) {	
+			$(element).children("ul").children("li").click(function (event) {
+				if ($(window).width() < 1400) {
+					var pageList = $(this).parent().children();
+					console.log(pageList);
+					var index = $(this).index() + 1;
+					
+					if (index === pageList.length) index = 0;
+					
+					$(pageList.get(index)).show("slide", { direction: "right" }, 500);
+					
+					$(this).hide("slide", { direction: "left" }, 500);
+				}});
 
-		$(element).children("ul").children("li").first().show();
+			$(element).children("ul").children("li").first().show();
 
-		$(element).addClass("well");
-		$(element).height($(window).height() - 40);
-		$(element).find(".left-image").height($(window).height() - 110);
-		$(element).find(".info").height($(window).height() - 110);
+			$(element).addClass("well");
+			$(element).height($(window).height() - 40);
+			$(element).find(".left-image").height($(window).height() - 110);
+			$(element).find(".info").height($(window).height() - 110);
 
-		// Setup sizing
-		$("#wrapper").height($(window).height() - 42);
-	}
-	else if (PL.DramProject.IsMobile()) {
+			// Setup sizing
+			$("#wrapper").height($(window).height() - 42);
+		}
+		else if (PL.DramProject.IsMobile()) {
 
-		$(element).page();
-	}
+			$(element).page();
+		}
 
-	$(element).filter("div.page").find("li.removeme").remove();
+		$(element).filter("div.page").find("li.removeme").remove();
 
 
-	$(".page").css("padding-bottom", pageBottomPadding);
-};
+		$(".page").css("padding-bottom", pageBottomPadding);
+	};
 }		

@@ -41,7 +41,7 @@ DramProject.Setup = function () {
 		$("#footer-button").click(PL.DramProject.RunFooterAnimation);
 
 		// Knockout apply bindings
-		DramProject.ViewModel = new DramViewModel();
+		DramProject.ViewModel = new DramViewModel([PL.DramProject.RefreshMenuHeight, PL.DramProject.ScrollTo]);
 		ko.applyBindings(DramProject.ViewModel);
 		
 		// Setup Data
@@ -51,13 +51,12 @@ DramProject.Setup = function () {
 
 	$(window).resize(function() {
 		PL.DramProject.RefreshMenuHeight();
-		ko.applyBindings(DramProject.ViewModel);
 	});
 
-	$(window).load(function () {
-		// Menu height setup for scroll bar
-		PL.DramProject.RefreshMenuHeight();
-	});
+	// $(window).load(function () {
+	// 	// Menu height setup for scroll bar
+	// 	PL.DramProject.RefreshMenuHeight();
+	// });
 };
 
 DramProject.IsTablet = function() {
@@ -75,7 +74,9 @@ DramProject.IsMobile = function() {
 // Resize the left menu size
 DramProject.RefreshMenuHeight = function() {
 	var menuPadding = $("#nav-list").outerHeight(true) - $("#nav-list").height();
-	$("#nav-list").height($(window).height()-( menuPadding + $("#nav-list").offset().top));
+	$("#nav-list").height($(window).height() - (menuPadding + $("#nav-list").offset().top));
+	// console.log($(window).height());
+	// $("#nav-list").height($(window).height() - 233);
 };
 
 DramProject.RunFooterAnimation = function(doOpen) {
@@ -99,6 +100,55 @@ DramProject.RunFooterAnimation = function(doOpen) {
 		}
 	});
 };
+
+DramProject.ScrollTo = function() {
+	if (location.hash) {
+		var regex = /#(\w+\s?\w+)&?(\d)?/g;
+		var result = regex.exec(location.hash);
+
+		if (result.length > 2) {
+			var distillery = result[1].replace(" ", "");
+			var bottleIndex = result[2];
+
+			// Scroll vertically
+			var menuElement = $("[href=#" + distillery + "]");
+			var num = $('#paging a').index(menuElement);
+			var scrollHeight = PL.DramProject.IsTablet() ? ($(window).height() - 18) * num : $("#wrapper").height() * num;
+
+			$("#" + distillery).parent().animate({scrollTop: scrollHeight}, 'fast');
+
+			// Scroll horizontally
+			if (PL.DramProject.IsTablet()) {
+				$($("#" + distillery + " ul li").get(bottleIndex)).show("slide", { direction: "right" }, 500);
+				$($("#" + distillery + " ul li").get(0)).hide("slide", { direction: "left" }, 500);
+			}
+			else {
+				$("#" + distillery + " ul").roundabout("animateToChild", bottleIndex);
+			}
+
+			// Select menu
+			$("#paging li").removeClass("active");
+			menuElement.parent().addClass("active");
+			
+			// Scroll to the menu element if necessary
+			if (!isScrolledIntoView(menuElement)) {
+				var menuElementTop = menuElement.offset().top - $("#nav-list").offset().top;
+				$("#nav-list").animate({scrollTop: menuElementTop}, 'fast');
+			}
+		}
+	}
+}
+
+function isScrolledIntoView(elem) {
+    var docViewTop = $(window).scrollTop();
+    var docViewBottom = docViewTop + $(window).height();
+
+    var elemTop = $(elem).offset().top;
+    var elemBottom = elemTop + $(elem).height();
+
+    return ((elemBottom >= docViewTop) && (elemTop <= docViewBottom)
+      && (elemBottom <= docViewBottom) &&  (elemTop >= docViewTop) );
+}
 
 } (PL.DramProject = PL.DramProject || {}, $));
 

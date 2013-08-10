@@ -1,5 +1,5 @@
 // Class to holds a Bottle attributes
-function BottleViewModel(region, distillery, order, name, alcohol, appearance, nose, taste, finish, description, externalurl, pictureurl, scotchiturl, saqurl, saqprice) {
+function BottleViewModel(region, distillery, order, name, alcohol, appearance, nose, taste, finish, description, externalurl, pictureurl, scotchiturl, saqurl, saqprice, index) {
 	var self = this;
 	
 	self.Region = region;
@@ -17,8 +17,13 @@ function BottleViewModel(region, distillery, order, name, alcohol, appearance, n
 	self.ScotchitUrl = scotchiturl;
 	self.SAQUrl = saqurl;
 	self.SAQPrice = saqprice;
+	self.Index = index;
 
 	self.SAQImageCssClass = self.SAQUrl ? "saq-img" : "display-none";
+
+	this.Permalink = ko.computed(function() {
+        return "#" + this.Distillery + "&" + this.Index;
+    }, this);
 }
 
 
