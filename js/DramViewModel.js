@@ -162,6 +162,7 @@ function DramViewModel(dataLoadedCallback) {
 			$(element).children("ul").children("li").click(function (event) {
 				if ($(window).width() < 1400) {
 					var pageList = $(this).parent().children();
+					console.log(pageList);
 					var index = $(this).index() + 1;
 					
 					if (index === pageList.length) index = 0;

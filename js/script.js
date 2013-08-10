@@ -113,11 +113,18 @@ DramProject.ScrollTo = function() {
 			// Scroll vertically
 			var menuElement = $("[href=#" + distillery + "]");
 			var num = $('#paging a').index(menuElement);
-			var scrollHeight = $("#wrapper").height() * num;
+			var scrollHeight = PL.DramProject.IsTablet() ? ($(window).height() - 18) * num : $("#wrapper").height() * num;
+
 			$("#" + distillery).parent().animate({scrollTop: scrollHeight}, 'fast');
 
 			// Scroll horizontally
-			$("#" + distillery + " ul").roundabout("animateToChild", bottleIndex);
+			if (PL.DramProject.IsTablet()) {
+				$($("#" + distillery + " ul li").get(bottleIndex)).show("slide", { direction: "right" }, 500);
+				$($("#" + distillery + " ul li").get(0)).hide("slide", { direction: "left" }, 500);
+			}
+			else {
+				$("#" + distillery + " ul").roundabout("animateToChild", bottleIndex);
+			}
 
 			// Select menu
 			$("#paging li").removeClass("active");
