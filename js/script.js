@@ -17,7 +17,7 @@ DramProject.Initialize = function () {
 	yepnope({
 		test: PL.DramProject.IsMobile(),
 		yep: { "jquery-mobile": "js/jquery.mobile-1.3.0.js" , "jquery-mobile-css": "css/jquery.mobile-1.3.0.css" },
-		nope: { "roundabout": "js/jquery.roundabout.min.js", "bootstrap-css": "css/bootstrap.min.css", "bootstrap": "js/bootstrap.min.js" },
+		nope: { "roundabout": "js/jquery.roundabout.min.js", "bootstrap-css": "css/bootstrap.min.css", "bootstrap": "js/bootstrap.min.js"},
 		callback: { "jquery-mobile": PL.DramProject.Setup, "roundabout": PL.DramProject.Setup}
 	});
 
@@ -41,7 +41,7 @@ DramProject.Setup = function () {
 		$("#footer-button").click(PL.DramProject.RunFooterAnimation);
 
 		// Knockout apply bindings
-		DramProject.ViewModel = new DramViewModel([PL.DramProject.RefreshMenuHeight, PL.DramProject.ScrollTo]);
+		DramProject.ViewModel = new DramViewModel([PL.DramProject.RefreshMenuHeight, PL.DramProject.ScrollTo, PL.DramProject.HideLoadingMask]);
 		ko.applyBindings(DramProject.ViewModel);
 		
 		// Setup Data
@@ -137,6 +137,10 @@ DramProject.ScrollTo = function() {
 			}
 		}
 	}
+}
+
+DramProject.HideLoadingMask = function() {
+	$("#mask").hide();
 }
 
 function isScrolledIntoView(elem) {
