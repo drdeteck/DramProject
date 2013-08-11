@@ -21,9 +21,6 @@
 	<script type="text/javascript" src="js/DistilleryViewModel.js"></script>
 	<script type="text/javascript" src="js/DramViewModel.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
-
-	<!-- CSS -->
-	<link type="text/css" href="css/style.css" rel="stylesheet" />
 	
 	<!-- Web Font -->
 	<link href='http://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css' />
@@ -63,7 +60,7 @@
 			<span class="title">Project</span>
 		</div>
 		<div id="nav-list" class="nav well sidebar-nav">
-			<ul id="paging" class="nav nav-list" data-role="listview" data-bind="template: {name: MenuDisplayMode, foreach: PL.DramProject.ViewModel.Regions, afterRender: PL.DramProject.ViewModel.RenderMenuItem }, jqmRefreshList: PL.DramProject.ViewModel.Regions">
+			<ul id="paging" class="nav nav-list" data-role="listview" data-bind="template: {name: MenuDisplayMode, foreach: PL.DramProject.ViewModel.Regions, afterRender: PL.DramProject.ViewModel.RenderMenuItem }">
 			</ul>
 		</div>
 	</div>
@@ -92,6 +89,7 @@
 						<li><a target="_blank" href="http://fredhq.com/projects/roundabout" >Roundabout</a></li>
 						<li><a target="_blank" href="http://twitter.github.com/bootstrap/" >Bootstrap</a></li>
 						<li><a target="_blank" href="http://glyphicons.com/" >Glyphicons</a></li>
+						<li><a target="_blank" href="http://detectmobilebrowsers.com/"></a>detectmobilebrowsers.com</li>
 					</ul>
 				</div>
 				<div class="float-left footer-column" >
@@ -134,13 +132,13 @@
 	</div>
 	<div id="mask"></div>
 
-
 	<!-- Templates -->
 	<script type="text/html" id="menu-header-template"><li data-bind="text: Name, css: Class" data-role="list-divider"></li></script>				
-	<script type="text/html" id="menu-item-template"><li><a data-bind="text: Name, attr: { 'href' : '#' + PL.Utilities.Idfy(Name) }" rel="external"></a></li></script>				
+	<script type="text/html" id="menu-item-template"><li><a data-bind="text: Name, attr: { 'href' : '#' + PL.Utilities.Idfy(Name) }" rel="external" data-ajax="false"></a></li></script>				
 	<script type="text/html" id="distillery-template">
 		<div class="page" data-bind="attr : { 'id' : PL.Utilities.Idfy(Distillery) }" data-role="page">
-		   <ul data-bind="attr : { 'id' : PL.Utilities.Idfy(Distillery) + '-roundabout' }, template: { name: 'bottle-template' , foreach: Bottles}"></ul>
+			<a class="display-none mobile-back" data-rel="back" data-icon="arrow-l" data-role="button" data-theme="b">Back</a>
+		    <ul data-bind="attr : { 'id' : PL.Utilities.Idfy(Distillery) + '-roundabout' }, template: { name: DisplayMode , foreach: Bottles}" data-role="collapsible-set" ></ul>
 		</div>
 	</script>
 	<script type="text/html" id="bottle-template">
@@ -169,6 +167,33 @@
 			</div>
 		</li>
 	</script>
+	<script type="text/html" id="mobile-bottle-template">
+		<li class="card-holder" data-bind="css : PL.Utilities.Idfy(Distillery)" data-role="collapsible">
+			<!-- <a data-bind="attr: { 'href' : '#' + GeneratedId() }, text: Name" rel="external" data-ajax="false"></a> -->
+			<h3 data-bind="text: Name"></h3>
+			<!--<div class="card" data-bind="attr: { 'id' : GeneratedId }" >-->
+			   	<!-- <div class="left-image" data-bind="style: { 'backgroundImage': 'url(' + PictureUrl + ')' }"></div>-->
+			   	<div class="info">
+				   	<div class="info-title">
+						<h1 data-bind="text: Distillery"></h1>
+						<h2 data-bind="text: Name"></h2>
+					</div>
+					<div class="info-meta">
+						<a class="permalink" target="_blank" data-bind="attr: { href: Permalink }"><i class="permalink-icon"></i></a>
+						<h5 class="saq-price" data-bind="text: PL.Utilities.FormatMoney(SAQPrice)"></h5>
+						<a target="_blank" data-bind="attr: { 'href' : SAQUrl, 'class' : SAQImageCssClass }"></a>
+					</div>
+						<p data-bind="text: Description"></p>
+						<h3>Nose</h3>
+						<div data-bind="text: Nose"></div>
+						<h3>Taste</h3>
+						<p data-bind="text: Taste"></p>
+						<h3>Finish</h3>
+						<span data-bind="text: Finish"></span>
 
+			    </div>	
+			<!--</div>-->
+		</li>
+	</script>
 </body>
 </html>

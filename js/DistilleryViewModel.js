@@ -24,6 +24,10 @@ function BottleViewModel(region, distillery, order, name, alcohol, appearance, n
 	this.Permalink = ko.computed(function() {
         return "#" + this.Distillery + "&" + this.Index;
     }, this);
+
+    this.GeneratedId = ko.computed(function() {
+        return PL.Utilities.Idfy(this.Distillery) + this.Index;
+    }, this);
 }
 
 
@@ -34,6 +38,11 @@ function DistilleryViewModel(region, distillery) {
 	self.Region = region;
 	self.Distillery = distillery;
 	self.Bottles = ko.observableArray();
+
+	// Dynamically choose the display template for the bottle
+	self.DisplayMode = function() {
+        return PL.DramProject.IsMobile() ? "mobile-bottle-template" : "bottle-template";
+    };
 	
 	// Method to add dummies to Bottles for a better jQuery Roundabout rendering
 	self.AddDummyBottlesIfNecessary = function() {

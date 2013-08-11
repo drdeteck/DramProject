@@ -107,9 +107,12 @@ function DramViewModel(dataLoadedCallback) {
 	self.RenderMenuItem = function(element, itemObject) {
 		if (PL.DramProject.IsMobile()) {
 			$("#paging").listview("refresh");
-			// $(element).click(function(){
-			// 	document.a = $(element);
-			// 	$.mobile.changePage( $($(this).attr("href")), "slide", true, true);
+			$(element).click(function(){
+				$.mobile.changePage( $($(this).find("a").attr("href")), "slide", true, true);
+			});
+			
+			// $('#Results').bind('pageinit', function() {
+			//   $("#Dalmore-roundabout").listview("refresh");
 			// });
 		}
 		else {
