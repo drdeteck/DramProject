@@ -155,44 +155,38 @@
 						<h5 class="saq-price" data-bind="text: PL.Utilities.FormatMoney(SAQPrice)"></h5>
 						<a target="_blank" data-bind="attr: { 'href' : SAQUrl, 'class' : SAQImageCssClass }"></a>
 					</div>
-						<p data-bind="text: Description"></p>
-						<h3>Nose</h3>
-						<div data-bind="text: Nose"></div>
-						<h3>Taste</h3>
-						<p data-bind="text: Taste"></p>
-						<h3>Finish</h3>
-						<span data-bind="text: Finish"></span>
-
+					<p data-bind="text: Description"></p>
+					<h3>Nose</h3>
+					<div data-bind="text: Nose"></div>
+					<h3>Taste</h3>
+					<p data-bind="text: Taste"></p>
+					<h3>Finish</h3>
+					<span data-bind="text: Finish"></span>
 			    </div>	
 			</div>
 		</li>
 	</script>
 	<script type="text/html" id="mobile-bottle-template">
 		<li class="card-holder" data-bind="css : PL.Utilities.Idfy(Distillery)" data-role="collapsible">
-			<!-- <a data-bind="attr: { 'href' : '#' + GeneratedId() }, text: Name" rel="external" data-ajax="false"></a> -->
 			<h3 data-bind="text: Name"></h3>
-			<!--<div class="card" data-bind="attr: { 'id' : GeneratedId }" >-->
-			   	<!-- <div class="left-image" data-bind="style: { 'backgroundImage': 'url(' + PictureUrl + ')' }"></div>-->
-			   	<div class="info">
-				   	<div class="info-title">
-						<h1 data-bind="text: Distillery"></h1>
-						<h2 data-bind="text: Name"></h2>
-					</div>
-					<div class="info-meta">
-						<a class="permalink" target="_blank" data-bind="attr: { href: Permalink }"><i class="permalink-icon"></i></a>
-						<h5 class="saq-price" data-bind="text: PL.Utilities.FormatMoney(SAQPrice)"></h5>
-						<a target="_blank" data-bind="attr: { 'href' : SAQUrl, 'class' : SAQImageCssClass }"></a>
-					</div>
-						<p data-bind="text: Description"></p>
-						<h3>Nose</h3>
-						<div data-bind="text: Nose"></div>
-						<h3>Taste</h3>
-						<p data-bind="text: Taste"></p>
-						<h3>Finish</h3>
-						<span data-bind="text: Finish"></span>
-
-			    </div>	
-			<!--</div>-->
+		   	<div class="info">
+			   	<div class="info-title">
+					<h1 data-bind="text: Distillery"></h1>
+					<h2 data-bind="text: Name"></h2>
+				</div>
+				<div class="info-meta">
+					<a class="permalink" target="_blank" data-bind="attr: { href: Permalink }"><i class="permalink-icon"></i></a>
+					<h5 class="saq-price" data-bind="text: PL.Utilities.FormatMoney(SAQPrice)"></h5>
+					<a target="_blank" data-bind="attr: { 'href' : SAQUrl, 'class' : SAQImageCssClass }"></a>
+				</div>
+				<p data-bind="text: Description"></p>
+				<h3>Nose</h3>
+				<div data-bind="text: Nose"></div>
+				<h3>Taste</h3>
+				<p data-bind="text: Taste"></p>
+				<h3>Finish</h3>
+				<span data-bind="text: Finish"></span>
+		    </div>	
 		</li>
 	</script>
 </body>

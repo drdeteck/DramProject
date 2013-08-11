@@ -110,10 +110,6 @@ function DramViewModel(dataLoadedCallback) {
 			$(element).click(function(){
 				$.mobile.changePage( $($(this).find("a").attr("href")), "slide", true, true);
 			});
-			
-			// $('#Results').bind('pageinit', function() {
-			//   $("#Dalmore-roundabout").listview("refresh");
-			// });
 		}
 		else {
 

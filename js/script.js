@@ -37,9 +37,6 @@ DramProject.Setup = function () {
 			callbacks.unshift(PL.DramProject.ScrollTo);
 			callbacks.unshift(PL.DramProject.RefreshMenuHeight);
 		}
-		else {
-			// $("#wrapper").hide();
-		}
 
 		DramProject.ViewModel = new DramViewModel(callbacks);
 		ko.applyBindings(DramProject.ViewModel);
@@ -52,11 +49,6 @@ DramProject.Setup = function () {
 	$(window).resize(function() {
 		PL.DramProject.RefreshMenuHeight();
 	});
-
-	// $(window).load(function () {
-	// 	// Menu height setup for scroll bar
-	// 	PL.DramProject.RefreshMenuHeight();
-	// });
 };
 
 DramProject.IsTablet = function() {
@@ -75,8 +67,6 @@ DramProject.IsMobile = function() {
 DramProject.RefreshMenuHeight = function() {
 	var menuPadding = $("#nav-list").outerHeight(true) - $("#nav-list").height();
 	$("#nav-list").height($(window).height() - (menuPadding + $("#nav-list").offset().top));
-	// console.log($(window).height());
-	// $("#nav-list").height($(window).height() - 233);
 };
 
 DramProject.RunFooterAnimation = function(doOpen) {
