@@ -142,6 +142,12 @@ ul
 	padding: 16px;
 }
 
+.distillery-link {
+	float: left;
+	margin-top: 22px;
+	margin-left: 8px;
+}
+
 .saq-img
 {
 	background-image: url('http://i.imgur.com/0oK12zw.png');
