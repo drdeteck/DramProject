@@ -42,8 +42,10 @@ DramProject.Setup = function () {
 		ko.applyBindings(DramProject.ViewModel);
 		
 		// Setup Data
-		PL.SpreadSheet.Key = "0AoKnDojyuN8YdGZVaGpoQmhhOE5PbU1pcGRVWFctcUE";
-		PL.SpreadSheet.GetData("select%20*%20order%20by%20A%2C%20B%2C%20C", DramProject.ViewModel.MapperCallback);
+		//PL.SpreadSheet.Key = "0AoKnDojyuN8YdGZVaGpoQmhhOE5PbU1pcGRVWFctcUE";
+		//PL.SpreadSheet.GetData("select%20*%20order%20by%20A%2C%20B%2C%20C", DramProject.ViewModel.MapperCallback);
+		PL.SpreadSheet.Key = "1HDgvSzqbY5waFKEqLrrWDg9bt_ozn6iZbwwK-_ax2RE";
+		PL.SpreadSheet.GetData("select+*+order+by+A,+B,+C", DramProject.ViewModel.MapperCallback);
 	});
 
 	$(window).resize(function() {
@@ -180,8 +182,9 @@ SpreadSheet.Key = "";
 SpreadSheet.Data = {};
 
 // Private Properties
-var vizPreKeyUrl = "https://spreadsheets.google.com/tq?key=";
-var vizArgsKey = "&tq=";
+var vizPreKeyUrl = "https://docs.google.com/spreadsheets/d/";
+var vizPostKeyUrl = "/gviz/tq?";
+var vizArgsKey = "tq=";
 
 // Public Methods
 SpreadSheet.GetData = function (args, callback)
@@ -196,7 +199,7 @@ SpreadSheet.GetData = function (args, callback)
 		args = vizArgsKey + args;
 	}
 	
-	var url = vizPreKeyUrl + SpreadSheet.Key + args;
+	var url = vizPreKeyUrl + SpreadSheet.Key + vizPostKeyUrl + args;
 
 	$.get(url, callback, "text");
 };

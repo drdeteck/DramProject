@@ -33,7 +33,7 @@ function DramViewModel(dataLoadedCallback) {
 		var distilleries = _.groupBy(data, function(scotch){
 			return scotch.c[1].v;
 		});
-		
+
 		var lastRegion = "";
 		var firstTime = true;
 
@@ -81,25 +81,30 @@ function DramViewModel(dataLoadedCallback) {
 	self.BottleMapper = function(bottle, index) {
 		var row = bottle.c;
 		return new BottleViewModel(
-			row[indexRegion].v,
-			row[indexDistillery].v,
-			row[indexOrder].v,
-			row[indexWhiskyName].v,
-			row[indexAlcohol].v,
-			row[indexAppearance].v,
-			row[indexNose].v,
-			row[indexTaste].v,
-			row[indexFinish].v,
-			row[indexDescription].v,
-			row[indexExternalUrl].v,
-			row[indexPictureUrl].v,
-			row[indexScotchitUrl].v,
-			row[indexSAQUrl].v,
-			row[indexSAQPrice].v,
+			self.TryGet(row[indexRegion]),
+			self.TryGet(row[indexDistillery]),
+			self.TryGet(row[indexOrder]),
+			self.TryGet(row[indexWhiskyName]),
+			self.TryGet(row[indexAlcohol]),
+			self.TryGet(row[indexAppearance]),
+			self.TryGet(row[indexNose]),
+			self.TryGet(row[indexTaste]),
+			self.TryGet(row[indexFinish]),
+			self.TryGet(row[indexDescription]),
+			self.TryGet(row[indexExternalUrl]),
+			self.TryGet(row[indexPictureUrl]),
+			self.TryGet(row[indexScotchitUrl]),
+			self.TryGet(row[indexSAQUrl]),
+			self.TryGet(row[indexSAQPrice]),
 			index
 			);
 	};
 	
+	self.TryGet = function(cell) {
+		if (cell) return cell.v;
+		return "";
+	}
+
 	self.MenuDisplayMode = function(menuItem) {
 		return menuItem.Class ? "menu-header-template" : "menu-item-template";
 	};
@@ -175,6 +180,7 @@ function DramViewModel(dataLoadedCallback) {
 
 			$(element).addClass("well");
 			$(element).height($(window).height() - 40);
+			console.log($(element).find(".left-image"))
 			$(element).find(".left-image").height($(window).height() - 110);
 			$(element).find(".info").height($(window).height() - 110);
 
