@@ -201,7 +201,15 @@ SpreadSheet.GetData = function (args, callback)
 	
 	var url = vizPreKeyUrl + SpreadSheet.Key + vizPostKeyUrl + args;
 
-	$.get(url, callback, "text");
+	//$.get(url, callback, "text");
+
+	$.ajax({
+    url: url,
+    type: 'GET',
+    crossDomain: true,
+    dataType: 'text',
+    success: callback,
+	});
 };
 
 SpreadSheet.CleanVizResponse = function(data)
