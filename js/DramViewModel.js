@@ -31,6 +31,7 @@ function DramViewModel(dataLoadedCallback) {
 		data = PL.SpreadSheet.CleanVizResponse(data);
 		// Group the data first
 		var distilleries = _.groupBy(data, function(scotch){
+			console.log(scotch);
 			return scotch.c[1].v;
 		});
 
@@ -166,7 +167,6 @@ function DramViewModel(dataLoadedCallback) {
 			$(element).children("ul").children("li").click(function (event) {
 				if ($(window).width() < 1400) {
 					var pageList = $(this).parent().children();
-					console.log(pageList);
 					var index = $(this).index() + 1;
 					
 					if (index === pageList.length) index = 0;
@@ -180,7 +180,6 @@ function DramViewModel(dataLoadedCallback) {
 
 			$(element).addClass("well");
 			$(element).height($(window).height() - 40);
-			console.log($(element).find(".left-image"))
 			$(element).find(".left-image").height($(window).height() - 110);
 			$(element).find(".info").height($(window).height() - 110);
 

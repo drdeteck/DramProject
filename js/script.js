@@ -201,19 +201,28 @@ SpreadSheet.GetData = function (args, callback)
 	
 	var url = vizPreKeyUrl + SpreadSheet.Key + vizPostKeyUrl + args;
 
-	//$.get(url, callback, "text");
+    window.google = {};
+    google.visualization = {};
+    google.visualization.Query = {};
+    google.visualization.Query.setResponse = function (data){
+		console.log(data);
+		callback(data);
+    };
+
+    //$.get(url, callback, "text");
 
 	$.ajax({
     url: url,
     type: 'GET',
     crossDomain: true,
-    dataType: 'text',
+    dataType: 'jsonp',
     success: callback,
 	});
 };
 
 SpreadSheet.CleanVizResponse = function(data)
 {
+	return data.table.rows;
 	try
 	{
 		var startIndex = data.indexOf("{");
