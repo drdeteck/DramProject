@@ -201,41 +201,20 @@ SpreadSheet.GetData = function (args, callback)
 	
 	var url = vizPreKeyUrl + SpreadSheet.Key + vizPostKeyUrl + args;
 
+	// Hack the JSONP call
     window.google = {};
     google.visualization = {};
     google.visualization.Query = {};
     google.visualization.Query.setResponse = function (data){
-		console.log(data);
 		callback(data);
     };
 
-    //$.get(url, callback, "text");
-
-	$.ajax({
-    url: url,
-    type: 'GET',
-    crossDomain: true,
-    dataType: 'jsonp',
-    success: callback,
-	});
+    $.get(url, callback, "jsonp");
 };
 
 SpreadSheet.CleanVizResponse = function(data)
 {
 	return data.table.rows;
-	try
-	{
-		var startIndex = data.indexOf("{");
-		return $.parseJSON(data.substr(startIndex, (data.length - startIndex - 2))).table.rows;
-	}
-	catch(e)
-	{
-		// We report an error, and show the erronous JSON string (we replace all " by ', to prevent another error)
-		console.log(data);
-		console.log(e);
-	}
-
-	return "";
 }
 
 } (PL.SpreadSheet = PL.SpreadSheet || {}, $));

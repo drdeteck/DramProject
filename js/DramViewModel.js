@@ -31,7 +31,6 @@ function DramViewModel(dataLoadedCallback) {
 		data = PL.SpreadSheet.CleanVizResponse(data);
 		// Group the data first
 		var distilleries = _.groupBy(data, function(scotch){
-			console.log(scotch);
 			return scotch.c[1].v;
 		});
 
