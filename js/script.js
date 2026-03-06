@@ -16,7 +16,7 @@ DramProject.Initialize = function () {
 	// Manage dependancy with YepNope
 	yepnope({
 		test: PL.DramProject.IsMobile(),
-		yep: { "jquery-mobile": "js/jquery.mobile-1.3.0.js" , "jquery-mobile-css": "css/jquery.mobile-1.3.0.css" },
+		yep: { "jquery-mobile": "js/jquery.mobile-1.4.1.min.js" , "jquery-mobile-css": "css/jquery.mobile-1.4.1.min.css" },
 		nope: { "roundabout": "js/jquery.roundabout.min.js", "bootstrap-css": "css/bootstrap.min.css", "bootstrap": "js/bootstrap.min.js" },
 		callback: { "jquery-mobile": PL.DramProject.Setup, "roundabout": PL.DramProject.Setup}
 	});
@@ -212,7 +212,7 @@ SpreadSheet.CleanVizResponse = function(data)
 	try
 	{
 		var startIndex = data.indexOf("{");
-		return $.parseJSON(data.substr(startIndex, (data.length - startIndex - 2))).table.rows;
+		return JSON.parse(data.substr(startIndex, (data.length - startIndex - 2))).table.rows;
 	}
 	catch(e)
 	{
