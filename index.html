@@ -16,13 +16,19 @@
 
 	<title>The Dram Project</title>
 
+	<!-- CSS -->
+	<link rel="stylesheet" href="css/bootstrap5.min.css" />
+	<link rel="stylesheet" href="css/bootstrap-icons.min.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/mobile.css" />
+
 	<!-- Javascript -->
-	<script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
-	<script type="text/javascript" src="js/jquery-ui-1.14.1.min.js"></script>
-	<script type="text/javascript" src="js/knockout-3.5.1.js"></script>
+	<script type="text/javascript" src="js/jquery-4.0.0.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-1.14.2.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="js/jquery.roundabout.min.js"></script>
+	<script type="text/javascript" src="js/knockout-3.5.2.js"></script>
 	<script type="text/javascript" src="js/underscore-1.13.8.min.js"></script>
-	<script type="text/javascript" src="js/modernizr-2.6.2.js"></script>
-	<script type="text/javascript" src="js/yepnope.js"></script>
 
 	<script type="text/javascript" src="js/DistilleryViewModel.js"></script>
 	<script type="text/javascript" src="js/DramViewModel.js"></script>
@@ -75,7 +81,7 @@
 
 	<div id="footer">
 		<div id="footer-button" class="footer-border">
-			<i class="icon-chevron-up footer-arrow"></i>
+			<i class="bi bi-chevron-up footer-arrow"></i>
 		</div>
 		<div id="footer-content" class="footer-border">
 			<div class="center footer-group" >
@@ -101,40 +107,44 @@
 				<div class="float-left footer-column" >
 					<h3>More</h3>
 					<ul class="footer-list">
-						<li><i class="icon-question-sign"></i> <a href="#about" role="button" data-toggle="modal" >About</a></li>
-						<li><i class="icon-envelope"></i> <a href="mailto:phil@philippelavoie.com" >Email me</a></li>
-						<li><i class="icon-user"></i> <a href="http://www.philippelavoie.com">PhilippeLavoie.com</a></li>
+						<li><i class="bi bi-question-circle"></i> <a href="#about" role="button" data-bs-toggle="modal" data-bs-target="#about">About</a></li>
+						<li><i class="bi bi-envelope"></i> <a href="mailto:phil@philippelavoie.com" >Email me</a></li>
+						<li><i class="bi bi-person"></i> <a href="http://www.philippelavoie.com">PhilippeLavoie.com</a></li>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<div class="modal hide" id="about" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-			<h3 id="myModalLabel">The Dram Project</h3>
-		</div>
-		<div class="modal-body" style="font-size:17px;">
-			<p>
-				My name is Philippe and I'm from Montréal. 
-				I'm a scotch amateur since 2011 and I read <strong><a href="http://www.reddit.com/r/scotch">Scotchit</a></strong> since then.
-				I went in Scotland for 3 weeks. 
-				There, I visited 6 distilleries and began what I call my bootcamp. 
-			</p>
-			<p>
-				When I came back, I had this idea of creating a reference website to hold the common distilleries and their whisky.
-				That was a nice way to discover the latest web technologies like <strong><a href="http://twitter.github.com/bootstrap/">Bootstrap</a></strong>
-				and to create something nice where you can find the official tasting notes of the most common whisky.
-			</p>
-			<p>
-				So, I hope you enjoy the site. You can <strong><a href="https://github.com/drdeteck/DramProject/issues/new">report a bug, send me a suggestion</a></strong> or a 
-				<strong><a href="mailto:phil@philippelavoie.com">contact me</a></strong> for any questions.
-			</p>
-			<p class="signature">Phil</p>
-		</div>
-		<div class="modal-footer">
-			<button class="btn btn-inverse" data-dismiss="modal" aria-hidden="true">Close</button>
+	<div class="modal fade" id="about" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+		<div class="modal-dialog">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="myModalLabel">The Dram Project</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body" style="font-size:17px;">
+				<p>
+					My name is Philippe and I'm from Montréal. 
+					I'm a scotch amateur since 2011 and I read <strong><a href="http://www.reddit.com/r/scotch">Scotchit</a></strong> since then.
+					I went in Scotland for 3 weeks. 
+					There, I visited 6 distilleries and began what I call my bootcamp. 
+				</p>
+				<p>
+					When I came back, I had this idea of creating a reference website to hold the common distilleries and their whisky.
+					That was a nice way to discover the latest web technologies like <strong><a href="http://twitter.github.com/bootstrap/">Bootstrap</a></strong>
+					and to create something nice where you can find the official tasting notes of the most common whisky.
+				</p>
+				<p>
+					So, I hope you enjoy the site. You can <strong><a href="https://github.com/drdeteck/DramProject/issues/new">report a bug, send me a suggestion</a></strong> or a 
+					<strong><a href="mailto:phil@philippelavoie.com">contact me</a></strong> for any questions.
+				</p>
+				<p class="signature">Phil</p>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			</div>
+			</div>
 		</div>
 	</div>
 	<div id="mask"></div>
@@ -150,14 +160,14 @@
 	</script>
 	<script type="text/html" id="bottle-template">
 		<li class="card-holder" data-bind="css : PL.Utilities.Idfy(Distillery)">
-			<div class="card">
+			<div class="dram-card">
 			   	<div class="left-image" data-bind="style: { 'backgroundImage': 'url(' + PictureUrl + ')' }"></div>
 			   	<div class="info">
 				   	<div class="info-title">
 						<h1 data-bind="text: Distillery"></h1>
 						<h2 class="float-left" data-bind="text: Name"></h2>
 						<a class="float-left" target="_blank" data-bind="attr: {href: ExternalUrl}">
-							<i class="icon-share-alt float-left distillery-link"></i>
+							<i class="bi bi-share float-left distillery-link"></i>
 						</a>
 					</div>
 					<div class="info-meta">
