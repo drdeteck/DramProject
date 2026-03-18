@@ -29,16 +29,13 @@ Data is sourced from a Google Spreadsheet and displayed through a responsive web
 
 | Library | Version | Purpose |
 |---------|---------|---------|
-| [jQuery](https://jquery.com/) | 3.7.1 | DOM manipulation & AJAX |
-| [jQuery UI](https://jqueryui.com/) | 1.14.1 | UI effects (slide, animations) |
-| [jQuery Mobile](https://jquerymobile.com/) | 1.4.1 | Mobile interface (loaded conditionally) |
-| [jQuery Roundabout](http://fredhq.com/projects/roundabout) | — | Carousel for desktop view |
-| [Knockout.js](https://knockoutjs.com/) | 3.5.1 | MVVM data binding |
+| [jQuery](https://jquery.com/) | 4.0.0 | DOM manipulation & AJAX |
+| [jQuery UI](https://jqueryui.com/) | 1.14.2 | UI effects (slide, animations) |
+| [jQuery Roundabout](http://fredhq.com/projects/roundabout) | 2.4.x | Carousel for desktop view |
+| [Knockout.js](https://knockoutjs.com/) | 3.5.2 | MVVM data binding |
 | [Underscore.js](https://underscorejs.org/) | 1.13.8 | Utility functions |
-| [Modernizr](https://modernizr.com/) | 2.6.2 | Feature detection |
-| [YepNope](http://yepnopejs.com/) | — | Conditional resource loading |
-| [Bootstrap](https://getbootstrap.com/) | 2.x | Layout and UI components |
-| [Glyphicons](https://glyphicons.com/) | — | Icons |
+| [Bootstrap](https://getbootstrap.com/) | 5.3.8 | Layout and UI components |
+| [Bootstrap Icons](https://icons.getbootstrap.com/) | 1.13.1 | Icons |
 
 ---
 
@@ -52,18 +49,19 @@ DramProject/
 ├── css/
 │   ├── style.css           # Main stylesheet
 │   ├── mobile.css          # Mobile-specific overrides
-│   ├── bootstrap.min.css   # Bootstrap framework
-│   ├── bootstrap-responsive.min.css
-│   └── jquery.mobile-1.4.1.min.css
+│   ├── bootstrap5.min.css  # Bootstrap 5 framework
+│   ├── bootstrap-icons.min.css  # Bootstrap Icons
+│   └── fonts/              # Bootstrap Icons font files
 ├── js/
 │   ├── script.js           # Main application logic & SpreadSheet module
 │   ├── DramViewModel.js    # Knockout ViewModel (data loading & mapping)
 │   ├── DistilleryViewModel.js  # Distillery & Bottle view models
-│   ├── jquery-3.7.1.min.js
-│   ├── jquery-ui-1.14.1.min.js
-│   ├── knockout-3.5.1.js
-│   ├── underscore-1.13.8.min.js
-│   └── ...
+│   ├── jquery-4.0.0.min.js
+│   ├── jquery-ui-1.14.2.min.js
+│   ├── bootstrap.bundle.min.js  # Bootstrap 5 + Popper.js bundle
+│   ├── jquery.roundabout.min.js
+│   ├── knockout-3.5.2.js
+│   └── underscore-1.13.8.min.js
 └── img/
     ├── logo.png
     ├── favicon.ico

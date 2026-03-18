@@ -111,10 +111,17 @@ function DramViewModel(dataLoadedCallback) {
 	
 	self.RenderMenuItem = function(element, itemObject) {
 		if (PL.DramProject.IsMobile()) {
-			$("#paging").listview("refresh");
-			$(element).click(function(){
-				$.mobile.changePage( $($(this).find("a").attr("href")), "slide", true, true);
-			});
+
+			if ($(element).children('a').length > 0) {
+				$($(element).children('a')).click(function(event) {
+					event.preventDefault();
+					var href = $(this).attr('href');
+					var target = $(href);
+					if (target.length) {
+						$('html, body').animate({scrollTop: target.offset().top}, 'slow');
+					}
+				});
+			}
 		}
 		else {
 
@@ -187,8 +194,7 @@ function DramViewModel(dataLoadedCallback) {
 			$("#wrapper").height($(window).height() - 42);
 		}
 		else if (PL.DramProject.IsMobile()) {
-
-			$(element).page();
+			// Basic mobile rendering without jQuery Mobile
 		}
 
 		$(element).filter("div.page").find("li.removeme").remove();

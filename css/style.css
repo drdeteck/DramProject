@@ -125,7 +125,7 @@ ul
 	background-size: contain;
 }
 
-.card
+.dram-card
 {
 	height: 50em;
 	width: 60em;
@@ -188,6 +188,8 @@ ul
 
 .span3
 {
+	float: left;
+	width: 220px;
 	margin-top: 20px;
 	margin-right: 20px;
 }
@@ -319,7 +321,7 @@ ul
 ***/
 
 @media screen and (min-width: 600px) and (max-width: 1400px) {
-	.card 
+	.dram-card 
 	{
 		width: 100%;
 		height: 100%;
@@ -404,9 +406,21 @@ ul
 ***  Bootstrap overwrite  
 ***/
 
-.nav-list > .active > a, .nav-list > .active > a:hover
+/* Replicate Bootstrap 2 .well which was removed in Bootstrap 5 */
+.well {
+	min-height: 20px;
+	padding: 19px;
+	margin-bottom: 20px;
+	background-color: #f5f5f5;
+	border: 1px solid #e3e3e3;
+	border-radius: 4px;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.nav > .active > a, .nav > .active > a:hover
 {
 	background-color: #333;
+	color: #fff;
 }
 
 a

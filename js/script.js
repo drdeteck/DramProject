@@ -12,14 +12,7 @@ DramProject.ViewModel = null;
 
 // Public Methods
 DramProject.Initialize = function () {
-
-	// Manage dependancy with YepNope
-	yepnope({
-		test: PL.DramProject.IsMobile(),
-		yep: { "jquery-mobile": "js/jquery.mobile-1.4.1.min.js" , "jquery-mobile-css": "css/jquery.mobile-1.4.1.min.css", "base-css": "css/style.css", "mobile-css": "css/mobile.css" },
-		nope: { "roundabout": "js/jquery.roundabout.min.js", "bootstrap-css": "css/bootstrap.min.css", "bootstrap": "js/bootstrap.min.js", "base-css": "css/style.css" },
-		callback: { "jquery-mobile": PL.DramProject.Setup, "roundabout": PL.DramProject.Setup}
-	});
+	PL.DramProject.Setup();
 };
 
 // Setup method. 
@@ -85,8 +78,8 @@ DramProject.RunFooterAnimation = function(doOpen) {
 		queue: false,
 		duration: 500,
 		complete: function () {
-			$("#footer-button i").toggleClass("icon-chevron-up");
-			$("#footer-button i").toggleClass("icon-chevron-down");
+			$("#footer-button i").toggleClass("bi-chevron-up");
+			$("#footer-button i").toggleClass("bi-chevron-down");
 		}
 	});
 };
