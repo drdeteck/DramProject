@@ -40,7 +40,9 @@ DramProject.Setup = function () {
 	});
 
 	$(window).resize(function() {
-		PL.DramProject.RefreshMenuHeight();
+		if (!PL.DramProject.IsMobile()) {
+			PL.DramProject.RefreshMenuHeight();
+		}
 	});
 };
 

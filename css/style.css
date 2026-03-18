@@ -381,10 +381,14 @@ ul
 
 	.span3
 	{
+		float: none;
+		width: 100%;
 		margin-top: 0px;
+		margin-right: 0px;
 	}
 
-	li.divider
+	li.divider,
+	li.nav-header
 	{
 		display: none;
 	}
@@ -392,11 +396,27 @@ ul
 	#nav-list 
 	{
 		overflow-y: hidden;
-		margin-bottom: 15px;
+		overflow-x: auto;
+		margin-bottom: 10px;
+		padding: 5px 10px;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	#paging
+	{
+		flex-direction: row;
+		flex-wrap: nowrap;
+	}
+
+	#paging li
+	{
+		white-space: nowrap;
 	}
 
 	#left-col
 	{
+		float: none;
+		width: 100%;
 		position: relative;
 		z-index: 100;
 	}
