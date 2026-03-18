@@ -81,25 +81,30 @@ function DramViewModel(dataLoadedCallback) {
 	self.BottleMapper = function(bottle, index) {
 		var row = bottle.c;
 		return new BottleViewModel(
-			row[indexRegion].v,
-			row[indexDistillery].v,
-			row[indexOrder].v,
-			row[indexWhiskyName].v,
-			row[indexAlcohol].v,
-			row[indexAppearance].v,
-			row[indexNose].v,
-			row[indexTaste].v,
-			row[indexFinish].v,
-			row[indexDescription].v,
-			row[indexExternalUrl].v,
-			row[indexPictureUrl].v,
-			row[indexScotchitUrl].v,
-			row[indexSAQUrl].v,
-			row[indexSAQPrice].v,
+			self.TryGet(row[indexRegion]),
+			self.TryGet(row[indexDistillery]),
+			self.TryGet(row[indexOrder]),
+			self.TryGet(row[indexWhiskyName]),
+			self.TryGet(row[indexAlcohol]),
+			self.TryGet(row[indexAppearance]),
+			self.TryGet(row[indexNose]),
+			self.TryGet(row[indexTaste]),
+			self.TryGet(row[indexFinish]),
+			self.TryGet(row[indexDescription]),
+			self.TryGet(row[indexExternalUrl]),
+			self.TryGet(row[indexPictureUrl]),
+			self.TryGet(row[indexScotchitUrl]),
+			self.TryGet(row[indexSAQUrl]),
+			self.TryGet(row[indexSAQPrice]),
 			index
 			);
 	};
 	
+	self.TryGet = function(cell) {
+		if (cell != null) return cell.v;
+		return "";
+	};
+
 	self.MenuDisplayMode = function(menuItem) {
 		return menuItem.Class ? "menu-header-template" : "menu-item-template";
 	};
@@ -107,10 +112,9 @@ function DramViewModel(dataLoadedCallback) {
 	self.RenderMenuItem = function(element, itemObject) {
 		if (PL.DramProject.IsMobile()) {
 			$("#paging").listview("refresh");
-			// $(element).click(function(){
-			// 	document.a = $(element);
-			// 	$.mobile.changePage( $($(this).attr("href")), "slide", true, true);
-			// });
+			$(element).click(function(){
+				$.mobile.changePage( $($(this).find("a").attr("href")), "slide", true, true);
+			});
 		}
 		else {
 
