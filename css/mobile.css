@@ -1,0 +1,30 @@
+/* CSS Overrides for mobile
+***************************/
+
+#wrapper {
+	height: 100%;
+	overflow: auto;
+	position: relative;
+	margin: 0;
+}
+
+#wrapper > div {
+	height: 100%;
+	min-height: 0px !important;
+}
+
+.info {
+	width: auto;
+	height: auto;
+	margin-top: 3px;
+	margin-bottom: 6px;
+	position: inherit;
+}
+
+.ui-collapsible-set {
+	padding-left: 0px;
+}
+
+.mobile-back {
+	display: block;
+}
